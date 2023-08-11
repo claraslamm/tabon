@@ -5,7 +5,12 @@ const knexfile = require("../knexfile").development;
 const knex = require("knex")(knexfile);
 
 router.get('/createusername', isLoggedIn, (req, res) => {
-    res.render('createUsername');
+    if (!req.user.username) {
+        res.render("createUsername");
+    } else {
+        res.redirect('/profile/createprofile')
+    }
+    
 });
 
 router.post('/createusername', async (req, res) => {
@@ -20,12 +25,19 @@ router.post('/createusername', async (req, res) => {
     res.redirect('/profile/createprofile')
 })
 
-router.get('/createprofile', isLoggedIn, (req, res) => {
-    res.render('createProfile');
+router.get('/createprofile', isLoggedIn, async (req, res) => {
+    let userProfile = await knex('user_profiles').where({ user_id: req.user.id }).first();
+    let companyProfile = await knex('company_profiles').where({ user_id: req.user.id }).first();
+
+    if (userProfile || companyProfile) {
+        res.redirect(`/profile/${req.user.username}`);
+    } else {
+        res.render("createProfile");
+    }
 })
 
 router.post('/createprofile', async (req, res) => {
-    
+
     const user_id = req.user.id;
 
     const newUserProfile = {
