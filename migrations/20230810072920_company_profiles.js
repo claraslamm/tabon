@@ -1,0 +1,26 @@
+/**
+ * @param { import("knex").Knex } knex
+ * @returns { Promise<void> }
+ */
+exports.up = function(knex) {
+    return knex.schema.createTable('company_profiles', table => {
+        table.increments();
+        table.string('company_name').notNullable().unique();
+        table.string('company_website');
+        table.string('company_description');
+        table.string('headcount');
+        table.boolean('company_remote');
+        table.string('about_us_heading');
+        table.string('about_us_description');
+        table.integer('user_id').notNullable();
+        table.foreign('user_id').references('users.id');
+  })
+};
+
+/**
+ * @param { import("knex").Knex } knex
+ * @returns { Promise<void> }
+ */
+exports.down = function(knex) {
+    return knex.schema.dropTable('company_profiles');
+};

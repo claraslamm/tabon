@@ -1,1 +1,37 @@
-<p>This is the login page. There will be a form below</p>
+<h1 class="page-header">Welcome to Tabon.</h1>
+<p>Ready to apply? Say goodbye to old-fashioned job sites</p>
+
+<form action="/auth/login" method="POST" id="login-form">
+
+<label for="username">Username</label> <br>
+<input type="text" name="username" id="username">
+
+<br>
+
+<label for="password">Password</label> <br>
+<input type="password" id="password" name="password">
+
+<br>
+<br>
+<button type="submit" id="sign-in-button">Sign in</button>
+
+</form>
+
+<p>or sign in with</p>
+{{!-- <script src="https://accounts.google.com/gsi/client" async defer></script>
+<div id="g_id_onload"
+    data-client_id="YOUR_GOOGLE_CLIENT_ID"
+    data-login_uri="https://your.domain/your_login_endpoint"
+    data-auto_prompt="false">
+</div>
+<div class="g_id_signin"
+    data-type="standard"
+    data-size="large"
+    data-theme="outline"
+    data-text="sign_in_with"
+    data-shape="rectangular"
+    data-logo_alignment="left"
+    data-width="100">
+</div> --}}
+
+<p>Don't have an account? <a href="/auth/signup">Create your Tabon profile today!</a></p>
