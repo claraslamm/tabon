@@ -43,6 +43,11 @@ app.get('/', isLoggedIn, (req, res) => {
 const authRoutes = require('./routers/auth');
 app.use('/auth', authRoutes);
 
+const profileRoutes = require('./routers/profiles');
+app.use('/profile', profileRoutes);
+
+
+
 //server is listening
 app.listen(8000, () => {
     console.log('Server is listening');
