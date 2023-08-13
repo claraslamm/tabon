@@ -13,7 +13,7 @@ router.get('/signup', notLoggedIn, (req, res) => {
 
 router.post('/signup',
     passport.authenticate('local-signup', {
-        successRedirect: "/auth/create",
+        successRedirect: "/profile/createprofile",
         failureRedirect: "/auth/signup",
     })
 )
@@ -36,7 +36,18 @@ router.post('/google', passport.authenticate('google', {
 }));
 
 router.get('/google/redirect', passport.authenticate('google'), (req, res) => {
-    res.redirect('/profile/create');
+    res.redirect('/profile/createusername');
+})
+
+//logout
+
+router.get('/logout', (req, res) => {
+    req.logout((err) => {
+        if (err) {
+            return next(err);
+        }
+    });
+    res.redirect('/auth/login');
 })
 
 

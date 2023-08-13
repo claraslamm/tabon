@@ -9,7 +9,7 @@ exports.up = function(knex) {
         table.string('company_website');
         table.string('company_description');
         table.string('headcount');
-        table.boolean('company_remote');
+        table.string('company_remote');
         table.string('about_us_heading');
         table.string('about_us_description');
         table.integer('user_id').notNullable();

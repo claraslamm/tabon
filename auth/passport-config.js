@@ -11,7 +11,7 @@ passport.serializeUser((user, done) => {
 
 passport.deserializeUser(async (id, done) => {
     const user = await knex('users').where({ id }).first();
-    return user ? done(null, true) : done(null, false);
+    return user ? done(null, user) : done(null, false);
 });
 
 passport.use("local-signup", new LocalStrategy(
