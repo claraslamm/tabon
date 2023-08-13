@@ -72,9 +72,26 @@ router.post('/createprofile', async (req, res) => {
 //     res.send(`This is the profile page of ${username}`);
 // })
 
-router.get('/edituserprofile', (req, res) => {
+router.get('/edituserprofile', async (req, res) => {
+    const id = req.user.id;
     res.render("userEditProfile");
+    const userInfo = await knex("user_profiles").where({user_id: id}).first();
+    console.log(userInfo);
+    res.render("userEditProfile", {userInfo: userInfo});
 })
+
+router.post('/edituserprofile', async (req, res) => {
+    const id = req.user.id;
+    const updateUserProfile = {
+        first_name: req.body.firstname,
+        last_name: req.body.lastname,
+        about_section: req.body.aboutme,
+    }
+
+    await knex('user_profiles').where({user_id: id}).update(updateUserProfile);
+    res.redirect('/');
+})
+
 
 router.get('/editcompanyprofile', async (req, res) => {
     const id = req.user.id;
