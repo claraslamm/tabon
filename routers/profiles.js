@@ -67,9 +67,37 @@ router.post('/createprofile', async (req, res) => {
     res.redirect(`/profile/${req.user.username}`);
 })
 
-router.get('/:username', (req, res) => {
-    let username = req.params.username;
-    res.send(`This is the profile page of ${username}`);
+// router.get('/:username', (req, res) => {
+//     let username = req.params.username;
+//     res.send(`This is the profile page of ${username}`);
+// })
+
+router.get('/edituserprofile', (req, res) => {
+    res.render("userEditProfile");
 })
+
+router.get('/editcompanyprofile', async (req, res) => {
+    const id = req.user.id;
+    const companyInfo = await knex("company_profiles").where({user_id: id}).first();
+    console.log(companyInfo);
+    res.render("companyEditProfile", {companyInfo: companyInfo});
+})
+
+router.post('/editcompanyprofile', async (req, res) => {
+    const id = req.user.id;
+    const updateCompanyProfile = {
+        company_name: req.body.companyname,
+        company_website: req.body.companywebsite,
+        company_description: req.body.companydescription,
+        headcount: req.body.headcount,
+        company_remote: req.body.companyremote,
+        about_us_heading: req.body.aboutusheader,
+        about_us_description: req.body.aboutusdescription,
+    }
+
+    await knex('company_profiles').where({user_id: id}).update(updateCompanyProfile);
+    res.redirect('/');
+})
+
 
 module.exports = router;

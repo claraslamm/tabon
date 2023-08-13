@@ -4,20 +4,12 @@
   <label for="edit-profile">Edit Your Company's Profile</label>
   <br>
 
-   <label for="firstname">First name</label>
-  <input type="text" id="firstname" name="firstname">
-  <br>
-
-  <label for="lastname">Last name</label>
-  <input type="text" id="lastname" name="lastname">
-  <br>
-
   <label for="companyname">Your company's name</label>
-  <input type="text" id="companyname" name="companyname">
+  <input type="text" id="companyname" value="{{#each companyInfo}}{{this.company_name}}{{/each}}" name="companyname">
   <br>
 
   <label for="companydescription">About Us</label>
-  <textarea id="companydescription" name="companydescription">
+  <textarea id="companydescription" name="companydescription"></textarea>
   <br>
 
   <label for="companywebsite">Your company's website</label>
@@ -30,8 +22,9 @@
 
   <label for="companyremote">Does your company offer remote work?</label>
 
-  <label for="companyremote">Yes</label>
+  <label for="remotetrue">Yes</label>
   <input type="radio" id="remotetrue" name="companyremote" value="yes">
+    <label for="remotefalse">No</label>
   <input type="radio" id="remotefalse" name="companyremote" value="no">
   
   <label for="aboutusheader">A short header for something special about your company</label>
@@ -40,7 +33,6 @@
   <label for="aboutusdescription">Share more details with your potential employees!</label>
   <textarea name="aboutusdescription" id="aboutusdesceription"></textarea>
 
-  <button type="submit">Done</button>
+  <button type="submit">Save</button>
 </form>
 
-<script src="companyEditProfile.js"></script>
