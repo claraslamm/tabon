@@ -123,9 +123,17 @@ router.post('/editcompanyprofile', async (req, res) => {
     res.redirect('/');
 })
 
-router.get('/:username', (req, res) => {
-    let username = req.params.username;
-    res.send(`This is the profile page of ${username}`);
-})
+router.get('/:myprofile', async (req, res) => {
+    let username = req.params.myprofile;
+
+    const userInfo = await knex('users')
+        .select()
+        .join('user_profiles', 'users.id', '=', 'user_profiles.user_id')
+        // .join('user_projects', 'users.id', '=', 'user_projects.user_profile_id')
+        .where({ username }).first()
+
+    console.log(userInfo);
+    res.render("profile", { userInfo: userInfo });
+});
 
 module.exports = router;
