@@ -67,9 +67,32 @@ router.post('/createprofile', async (req, res) => {
     res.redirect(`/profile/${req.user.username}`);
 })
 
-router.get('/:username', (req, res) => {
-    let username = req.params.username;
-    res.send(`This is the profile page of ${username}`);
-})
+// router.get('/:username', (req, res) => {
+//     let username = req.params.username;
+//     res.send(`This is the profile page of ${username}`);
+// })
+
+router.get('/:myprofile', async (req, res) => {
+    let username = req.params.myprofile;
+
+    const userInfo = await knex('users')
+        .select()
+        .join('user_profiles', 'users.id', '=', 'user_profiles.user_id')
+        // .join('user_projects', 'users.id', '=', 'user_projects.user_profile_id')
+        .where({ username }).first()
+
+    console.log(userInfo);
+    res.render("profile", { userInfo: userInfo });
+}) 
+
+// supposed to display below info?
+router.get('/myprofile', isLoggedIn, (req, res) => {
+    res.render('profile', {
+        firstname: req.user.first_name,
+        lastname: req.user.last_name,
+        username: req.user.username,
+        image: req.user.email,
+    });
+});
 
 module.exports = router;

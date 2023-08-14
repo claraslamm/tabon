@@ -1,1 +1,22 @@
-<h1>Each user's profile page</h1>
+<form action="/profile/myprofile" method="POST">
+
+<div class="profile">
+  <img src="{{profileImage}}" alt="Profile Picture">
+  <h1>{{userInfo.first_name}} {{userInfo.last_name}}</h1>
+  <h2>{{userInfo.username}}</h2>
+  <h2>{{userInfo.email}}</h2>
+
+  <button class="edit-btn">Edit Profile</button>
+
+  <h2>About</h2>
+  <p>{{userInfo.about_section}}</p>
+
+  <h2>Project</h2>
+  <p>{{project_name}}</p>
+  <img src="{{projectImage}}" alt="Project Picture">
+  <p>{{project_description}}</p>
+  <p>{{project_post_date}}</p>
+
+
+</div>
+</form>
