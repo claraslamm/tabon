@@ -9,7 +9,7 @@ exports.up = function (knex) {
         table.string('project_description');
         table.timestamp('project_post_date').defaultTo(knex.fn.now());
         table.integer('user_profile_id').notNullable();
-        table.foreign('user_profile_id').references('user_profiles.id');
+        table.foreign('user_profile_id').references('user_profiles.user_id');
     })
   
 };

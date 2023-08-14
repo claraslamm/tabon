@@ -1,37 +1,37 @@
 <a href="#" class="logo">Tabon</a>
 
 <form action="/profile/editcompanyprofile" method="POST">
-  <label for="edit-profile">Edit Your Company's Profile</label>
-  <br>
+  <h4>Edit Your Company's Profile</h4>
 
   <label for="companyname">Your company's name</label>
-  <input type="text" id="companyname" value="{{#each companyInfo}}{{this.company_name}}{{/each}}" name="companyname">
+  <input type="text" id="companyname" value="{{companyInfo.company_name}}" name="companyname">
   <br>
 
   <label for="companydescription">About Us</label>
-  <textarea id="companydescription" name="companydescription"></textarea>
+  <textarea id="companydescription" name="companydescription">{{companyInfo.company_description}}</textarea>
   <br>
 
   <label for="companywebsite">Your company's website</label>
-  <input type="text" id="companywebsite" name="companywebsite">
+  <input type="text" id="companywebsite" name="companywebsite" value="{{companyInfo.company_website}}">
   <br>
 
   <label for="headcount">Your company's number of employees</label>
-  <input type="number" id="headcount" name="headcount">
+  <input type="number" id="headcount" name="headcount" value="{{companyInfo.headcount}}">
   <br>
 
   <label for="companyremote">Does your company offer remote work?</label>
+  <div id="companyremote">
+    <label for="remotetrue">Yes</label>
+    <input type="radio" id="remotetrue" name="companyremote" value="yes">
+      <label for="remotefalse">No</label>
+    <input type="radio" id="remotefalse" name="companyremote" value="no" checked>
+  </div>
 
-  <label for="remotetrue">Yes</label>
-  <input type="radio" id="remotetrue" name="companyremote" value="yes">
-    <label for="remotefalse">No</label>
-  <input type="radio" id="remotefalse" name="companyremote" value="no">
-  
   <label for="aboutusheader">A short header for something special about your company</label>
-  <input type="text" id="aboutusheader" name="aboutusheader">
+  <input type="text" id="aboutusheader" name="aboutusheader" value="{{companyInfo.about_us_heading}}">
   <br>
   <label for="aboutusdescription">Share more details with your potential employees!</label>
-  <textarea name="aboutusdescription" id="aboutusdesceription"></textarea>
+  <textarea name="aboutusdescription" id="aboutusdesceription">{{companyInfo.about_us_description}}</textarea>
 
   <button type="submit">Save</button>
 </form>

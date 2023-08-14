@@ -1,36 +1,40 @@
 <a href="#" class="logo">Tabon</a>
 
 <form action="/profile/edituserprofile" method="POST">
-  <label for="edit-profile">Edit Your User's Profile</label>
+  <h4>Edit Your User's Profile</h4>
   <br>
 
   <label for="firstname">First Name</label>
-  <input type="text" id="firstname" name="firstname">
+  <input type="text" id="firstname" name="firstname" value="{{userInfo.first_name}}">
   <br>
 
   <label for="lastname">Last Name</label>
-  <input type="text" id="lastname" name="lastname">
+  <input type="text" id="lastname" name="lastname" value="{{userInfo.last_name}}">
   <br>
 
   <label for="aboutme">About Me</label>
-  <textarea id="aboutme" name="aboutme"></textarea>
+  <textarea id="aboutme" name="aboutme">{{userInfo.about_section}}</textarea>
   <br>
 
-   <label for="project">Project</label>
-   <br>
-
-   <label for="projectheader">Your project's name</label>
-  <input type="text" id="projectheader" name="projectheader">
+  <label for="project">Project</label>
   <br>
+  <div id="project">
+    <label for="projectheader">Your project's name</label>
+    <input type="text" id="projectheader" name="projectheader" value="{{projectInfo.project_name}}">
+    <br>
 
-  <label for="projectdescription">Tell us more about your project</label>
-  <textarea name="projectdescription" id="projectdescription"></textarea>
-  <br>
+    <label for="projectdescription">Tell us more about your project</label>
+    <textarea name="projectdescription" id="projectdescription">{{projectInfo.project_description}}</textarea>
+    <br>
 
-  <label for="uploadproject">Upload your project</label>
-  <input type="file" id="uploadproject" name="uplpadproject" accept="image/png, image/jpeg">
-  <br>
+    <label for="uploadproject">Upload your project</label>
+    <input type="file" id="uploadproject" name="uploadproject" accept="image/png, image/jpeg">
+    <br>
+  </div>
+
+
   <label for="uploadresume">Upload your resume</label>
+  <br>
   <input type="file" id="uploadresume" name="uploadresume" accept=".doc,.docx,.xml,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document">
 
   <br>
