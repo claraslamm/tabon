@@ -11,9 +11,9 @@
     <p style="white-space: pre-line;">{{jobInfo.job_description}}</p>
 </div>
 
-{{#if isUser}}
+{{#unless isCompany}}
 <form action="/jobs/applyjob/{{jobInfo.id}}" method="POST">
     {{!-- <input type="hidden" name="jobId" value="{{jobInfo.id}}"> --}}
     <button type="submit">Apply for this position</button>
 </form>
-{{/if}}
+{{/unless}}

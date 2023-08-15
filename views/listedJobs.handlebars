@@ -8,7 +8,7 @@
     <tbody>
         {{#each jobs}}
         <tr>
-            <td>{{this.job_title}}</td>
+            <td><a href="/jobs/listedjobs/{{this.id}}">{{this.job_title}}</a></td>
             <td>{{this.applicant_count}}</td>
         </tr>
         {{/each}}

@@ -25,7 +25,7 @@ const passport = require('./auth/passport-config');
 
 app.use(
     session({
-        secret: 'ExpectoPatronum',
+        secret: 'WingardiumLeviosa',
         resave: false,
         saveUninitialized: false,
     })

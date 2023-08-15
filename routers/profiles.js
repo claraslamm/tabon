@@ -133,13 +133,25 @@ router.post('/editcompanyprofile', async (req, res) => {
 })
 
 router.get('/user/:myprofile', async (req, res) => {
+    
     let username = req.params.myprofile;
+    let user_id = req.user ? req.user.id : null;
+
+    const currentUser = await knex('users')
+        .where({ id: user_id }).first();
+    
+    //checking if current user is the same as that of the profile being viewed
+    const isUser = currentUser.username === username ? true : false; 
 
     const userInfo = await knex('users')
         .select()
         .join('user_profiles', 'users.id', '=', 'user_profiles.user_id')
         .join('user_projects', 'users.id', '=', 'user_projects.user_profile_id')
         .where({ username }).first()
+
+    if (!userInfo) {
+        return res.redirect('/'); //if user cannot be found, redirect back to home page
+    }
 
     let profilePic = [
         {name: "profilepicture", userId: userInfo.user_id },
@@ -163,7 +175,7 @@ router.get('/user/:myprofile', async (req, res) => {
         return exists ? imagePath : null;
     })
     
-    res.render("profile", { userInfo: userInfo, imagePaths: imagePaths, profilePicPath: profilePicPath });
+    res.render("profile", { isUser: isUser, userInfo: userInfo, imagePaths: imagePaths, profilePicPath: profilePicPath });
 });
 
 router.get('/resume/:id', (req, res) => {

@@ -1,0 +1,18 @@
+<h1>These are the jobs you have applied for</h1>
+
+<table>
+    <thead>
+        <th scope="col"><strong>Job Title</strong></th>
+        <th scope="col"><strong>Company</strong></th>
+        <th scope="col"><strong>Location</strong></th>
+    </thead>
+    <tbody>
+        {{#each jobs}}
+        <tr>
+            <td><a href="/jobs/jobdetails/{{this.job_id}}">{{this.job_title}}</a></td>
+            <td><a href="">{{this.company_name}}</a></td>
+            <td>{{this.location}}</td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
