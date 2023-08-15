@@ -22,15 +22,14 @@ router.post('/createpost', async (req, res) => {
     let id = await knex("user_posts").insert(newPost).returning("id");
     newPost.id = id[0].id;
 
-    uploadPicture(req, 'postpic', 'postpicture', 'postpics');
+    uploadPicture(req, 'postpic', 'postpicture', 'postpics', newPost.id);
 
-    res.redirect(`/postdetails/${newPost.id}`)
+    res.redirect(`/posts/postdetails/${newPost.id}`)
 })
 
 router.get('/postdetails/:postid', async (req, res) => {
 
     const postId = req.params.postid;
-    const id = req.user ? req.user.id : null;
     
     const postInfo = await knex('user_posts')
         .join('user_profiles', 'user_profiles.user_id', '=', 'user_posts.post_user_id')
@@ -41,7 +40,7 @@ router.get('/postdetails/:postid', async (req, res) => {
         { name: "postpicture", userId: postInfo.user_id }
     ];
 
-    const postPicPath = retrievePicture(postPicture, 'postpics');
+    const postPicPath = retrievePicture(postPicture, 'postpics', postId);
 
     res.render('postDetails', { postInfo: postInfo, postPicPath: postPicPath });
 })

@@ -51,11 +51,8 @@ app.use((req, res, next) => {
 });
 
 //routes
-const isLoggedIn = require("./auth/check-login").isLoggedIn;
-
-app.get('/', isLoggedIn, (req, res) => {
-    res.render('home');
-})
+const homeRoute = require('./routers/home');
+app.use('/', homeRoute);
 
 const authRoutes = require('./routers/auth');
 app.use('/auth', authRoutes);

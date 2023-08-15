@@ -10,6 +10,8 @@ exports.up = function(knex) {
         table.string('post_title').notNullable();
         table.string('post_summary').notNullable();
         table.string('post_description').notNullable();
+        table.timestamp("post_time").defaultTo(knex.fn.now());
+
   })
 };
 

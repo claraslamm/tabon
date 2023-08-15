@@ -54,7 +54,7 @@ router.post('/createjob', async (req, res) => {
     let id = await knex('job_listings').insert(newJob).returning('id');
     newJob.id = id[0].id;
 
-    uploadPicture(req, 'jobpic', 'jobpicture', 'jobpics');
+    uploadPicture(req, 'jobpic', 'jobpicture', 'jobpics', newJob.id);
 
     res.redirect(`/jobs/jobdetails/${newJob.id}`);
 });
@@ -81,7 +81,7 @@ router.get('/jobdetails/:job', async (req, res) => {
         { name: "jobpicture", userId: jobInfo.user_id }
     ];
 
-    const jobPicPath = retrievePicture(jobPicture, 'jobpics');
+    const jobPicPath = retrievePicture(jobPicture, 'jobpics', jobId);
 
     res.render('jobDetails', { jobInfo: jobInfo, jobOpen, isCompany: isCompany, jobPicPath: jobPicPath, sameCompany: sameCompany });
 });
