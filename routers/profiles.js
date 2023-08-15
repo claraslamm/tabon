@@ -1,9 +1,8 @@
 const router = require('express').Router();
-const isLoggedIn = require('../auth/check-login').isLoggedIn;
-
+const { isLoggedIn } = require('../auth/check-login');
+const { uploadProfilePic, uploadProjectPics, uploadResume } = require('../helpers/helpers');
 const knexfile = require("../knexfile").development;
 const knex = require("knex")(knexfile);
-
 const fs = require('fs');
 
 //routes
@@ -67,15 +66,17 @@ router.post('/createprofile', async (req, res) => {
         user_profile_id: user_id
     }
 
+    uploadProjectPics(req);
+
     if (req.body.user_type === "user") {
         await knex('user_profiles').insert(newUserProfile)
         await knex('user_projects').insert(newProject);
+        res.redirect(`/profile/user/${req.user.username}`);
     } else {
         await knex('company_profiles').insert(newCompanyProfile);
+        res.redirect(`/profile/company/${req.user.username}`);
     }
-
-    res.redirect(`/profile/${req.user.username}`);
-})
+});
 
 router.get('/edituserprofile', isLoggedIn, async (req, res) => {
     const id = req.user.id;
@@ -87,38 +88,9 @@ router.get('/edituserprofile', isLoggedIn, async (req, res) => {
 router.post('/edituserprofile', async (req, res) => {
     const id = req.user.id;
 
-    const profilePic = req.files.profilepic;
-    const profilePicName = 'profilepicture' + req.user.id;
-    const profilePicDestination = "public/images/profilepics";
-    
-    if (profilePic) {
-        profilePic.mv(`${profilePicDestination}/${profilePicName}`, (err) => {
-            if (err) {
-                console.log(err);
-            }
-        });
-    }
-    
-    const projectPics = [
-        { file: req.files.projectpic1, name: 'projectpicture1' },
-        { file: req.files.projectpic2, name: 'projectpicture2' },
-        { file: req.files.projectpic3, name: 'projectpicture3' },
-    ];
-
-    const projectPicDestination = 'public/images/projectpics';
-
-    for (let i = 0; i < projectPics.length; i++) {
-        const { file, name } = projectPics[i];
-        const newFileName = name + req.user.id;
-
-        if (file) {
-            file.mv(`${projectPicDestination}/${newFileName}`, (err) => {
-                if (err) {
-                    console.log(err);
-                };
-            });    
-        }
-    };
+    uploadProfilePic(req);
+    uploadProjectPics(req);
+    uploadResume(req);
 
     const updateUserProfile = {
         first_name: req.body.firstname,
@@ -134,7 +106,7 @@ router.post('/edituserprofile', async (req, res) => {
 
     await knex('user_profiles').where({ user_id: id }).update(updateUserProfile);
     await knex('user_projects').where({ user_profile_id: id }).update(updateProjectInfo);
-    res.redirect('/');
+    res.redirect(`/profile/user/${req.user.username}`);
 })
 
 
@@ -160,7 +132,7 @@ router.post('/editcompanyprofile', async (req, res) => {
     res.redirect('/');
 })
 
-router.get('/:myprofile', async (req, res) => {
+router.get('/user/:myprofile', async (req, res) => {
     let username = req.params.myprofile;
 
     const userInfo = await knex('users')
@@ -192,6 +164,27 @@ router.get('/:myprofile', async (req, res) => {
     })
     
     res.render("profile", { userInfo: userInfo, imagePaths: imagePaths, profilePicPath: profilePicPath });
+});
+
+router.get('/resume/:id', (req, res) => {
+    const userId = req.params.id;
+
+    const resumePathDocx = `public/resumes/resume${userId}.docx`;
+    const resumePathPdf = `public/resumes/resume${userId}.pdf`;
+    let resumePath;
+
+    const docxExists = fs.existsSync(resumePathDocx);
+    const pdfExists = fs.existsSync(resumePathPdf);
+
+    if (pdfExists) {
+        resumePath = `/resumes/resume${userId}.pdf`;
+    } else if (docxExists) {
+        resumePath = `/resumes/resume${userId}.docx`;
+    } else {
+        resumePath = null;
+    }
+
+    res.render('viewResume', { resumePath: resumePath });
 });
 
 module.exports = router;

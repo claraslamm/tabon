@@ -1,0 +1,19 @@
+<h1>{{jobInfo.job_title}} -- {{jobInfo.company_name}}</h1>
+
+<p>Job Marketing Picture</p>
+<p>Company Logo</p>
+
+<span>{{jobInfo.job_nature}}</span>
+<span>Remote: {{jobInfo.job_remote}}</span>
+<p>Location: {{jobInfo.location}}</p>
+
+<div>
+    <p style="white-space: pre-line;">{{jobInfo.job_description}}</p>
+</div>
+
+{{#if isUser}}
+<form action="/jobs/applyjob/{{jobInfo.id}}" method="POST">
+    {{!-- <input type="hidden" name="jobId" value="{{jobInfo.id}}"> --}}
+    <button type="submit">Apply for this position</button>
+</form>
+{{/if}}

@@ -1,0 +1,16 @@
+<h1>Here are the jobs that you have posted</h1>
+
+<table>
+    <thead>
+        <th scope="col"><strong>Job Title</strong></th>
+        <th scope="col"><strong>Number of Applicants</strong></th>
+    </thead>
+    <tbody>
+        {{#each jobs}}
+        <tr>
+            <td>{{this.job_title}}</td>
+            <td>{{this.applicant_count}}</td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>

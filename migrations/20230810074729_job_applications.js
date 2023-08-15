@@ -8,7 +8,7 @@ exports.up = function(knex) {
         table.integer('job_id').notNullable();
         table.foreign('job_id').references('job_listings.id');
         table.integer('user_profile_id').notNullable();
-        table.foreign('user_profile_id').references('user_profiles.id');
+        table.foreign('user_profile_id').references('user_profiles.user_id');
         table.timestamp('application_date').defaultTo(knex.fn.now());
   })
 };
