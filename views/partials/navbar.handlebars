@@ -1,0 +1,12 @@
+{{#if user}}
+<nav>
+    <a href="/profile/user/{{user.username}}">Profile</a>
+    <a href="/jobs">Jobs</a>
+    <a href="/auth/logout">Logout</a>
+</nav>
+{{else}}
+<nav>
+    <a href="/jobs">Jobs</a>
+    <a href="/auth/login">Login</a>
+</nav>
+{{/if}}

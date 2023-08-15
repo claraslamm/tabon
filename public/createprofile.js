@@ -15,12 +15,4 @@ document.addEventListener('DOMContentLoaded', () => {
         companyForm.style = "display:block";
     })
 
-
-
-
-
-
-
-
-
-})
+});

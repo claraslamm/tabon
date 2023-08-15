@@ -1,11 +1,10 @@
 const router = require('express').Router();
 const isLoggedIn = require("../auth/check-login").isLoggedIn;
-// const formatJobDate = require("../helpers/helpers").formatJobDate;
+const { uploadPicture, retrievePicture } = require('../helpers/upload');
 const knexfile = require("../knexfile").development;
 const knex = require("knex")(knexfile);
 
 //routes
-
 router.get('/', async (req, res) => {
 
     let id = req.user ? req.user.id : null;
@@ -13,8 +12,7 @@ router.get('/', async (req, res) => {
 
     let jobInfo = await knex('company_profiles')
         .join('job_listings', 'company_profiles.user_id', '=', 'job_listings.company_id');
-    
-    // jobInfo = formatJobDate(jobInfo);
+
     jobInfo = jobInfo.map((job) => {
         const formattedDate = job.job_updated_date.toLocaleDateString("en-US", {
             month: "short",
@@ -48,23 +46,15 @@ router.post('/createjob', async (req, res) => {
         job_nature: req.body.jobnature,
         job_remote: req.body.jobremote,
         location: req.body.location,
-        job_description: req.body.jobdescription
+        job_summary: req.body.jobsummary,
+        job_description: req.body.jobdescription,
+        job_status: "Open"
     }
 
     let id = await knex('job_listings').insert(newJob).returning('id');
     newJob.id = id[0].id;
 
-    const jobPic = req.files ? req.files.jobpic : null;
-    const jobPicName = "jobpicture" + req.user.id + newJob.id;
-    const jobPicDestination = "public/images/jobpics";
-
-    if (jobPic) {
-      jobPic.mv(`${jobPicDestination}/${jobPicName}`, (err) => {
-        if (err) {
-          console.log(err);
-        }
-      });
-    }
+    uploadPicture(req, 'jobpic', 'jobpicture', 'jobpics');
 
     res.redirect(`/jobs/jobdetails/${newJob.id}`);
 });
@@ -72,17 +62,37 @@ router.post('/createjob', async (req, res) => {
 router.get('/jobdetails/:job', async (req, res) => {
     
     const jobId = req.params.job;
-    let id = req.user ? req.user.id : null;
+    const id = req.user ? req.user.id : null;
 
     const jobInfo = await knex('company_profiles')
         .join('job_listings', 'company_profiles.user_id', '=', 'job_listings.company_id')
         .where({ 'job_listings.id': jobId })
         .first();
     
+    //checking if you are a company (shouldn't be able to apply for jobs)
     const isCompany = await knex('company_profiles').where({ user_id: id }).first();
     
-    res.render('jobDetails', { jobInfo: jobInfo, isCompany: isCompany });
+    //checking if company that is viewing the job is same company that posted the job (only they can close the role)
+    const sameCompany = jobInfo.company_id === id ? true : false;
+
+    const jobOpen = jobInfo.job_status === "Open" ? true : false;
+
+    const jobPicture = [
+        { name: "jobpicture", userId: jobInfo.user_id }
+    ];
+
+    const jobPicPath = retrievePicture(jobPicture, 'jobpics');
+
+    res.render('jobDetails', { jobInfo: jobInfo, jobOpen, isCompany: isCompany, jobPicPath: jobPicPath, sameCompany: sameCompany });
 });
+
+router.post('/closejob/:job', async (req, res) => {
+    
+    const jobId = req.params.job;
+    await knex('job_listings').where({ id: jobId }).update({ job_status: "Closed" });
+
+    res.redirect('/jobs')
+})
 
 router.post('/applyjob/:jobId', async (req, res) => {
     
@@ -98,12 +108,13 @@ router.post('/applyjob/:jobId', async (req, res) => {
 
     const newJobApplication = {
         job_id: jobId,
-        user_profile_id: userId
+        user_profile_id: userId,
+        application_status: "Pending"
     }
 
     await knex('job_applications').insert(newJobApplication);
 
-    res.redirect('/jobs/appliedjobs'); // should go back to jobs I have applied for page
+    res.redirect('/jobs/appliedjobs');
 });
 
 router.get('/listedjobs', isLoggedIn, async (req, res) => {
@@ -120,7 +131,12 @@ router.get('/listedjobs', isLoggedIn, async (req, res) => {
             .select('job_listings.id', 'job_listings.job_title')
             .count('* as applicant_count');
 
-        res.render("listedjobs", { jobs: jobs });
+        const noApplicants = await knex('job_listings')
+            .leftJoin('job_applications', 'job_listings.id', '=', 'job_applications.job_id')
+            .where({ 'job_listings.company_id': id, 'user_profile_id': null })
+            .select('job_listings.id', 'job_listings.job_title');
+
+        res.render("listedjobs", { jobs: jobs, noApplicants: noApplicants });
 
     } else {
         res.redirect('/jobs');
@@ -149,6 +165,8 @@ router.get('/listedjobs/:jobid', isLoggedIn, async (req, res) => {
             return applicant;
         });
 
+        console.log(applicants);
+            
         res.render('jobApplicants', { applicants: applicants });
 
     } else {
@@ -169,8 +187,20 @@ router.get('/appliedjobs', isLoggedIn, async (req, res) => {
         .where({ 'job_applications.user_profile_id': id });
     
     res.render('appliedJobs', { jobs: jobs });
+});
 
-})
+router.post('/rejectapplicant/:job/:user', async (req, res) => {
+    const jobId = req.params.job;
+    const userId = req.params.user;
+
+    console.log('this should appear on console');
+
+    await knex('job_applications')
+        .where({ job_id: jobId, user_profile_id: userId })
+        .update({ application_status: "Rejected" });
+    
+    res.redirect(`/jobs/listedjobs/${jobId}`);
+});
 
 
 module.exports = router;

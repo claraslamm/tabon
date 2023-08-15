@@ -4,7 +4,15 @@ const app = express();
 
 //handlebars
 const { engine } = require('express-handlebars');
-app.engine('handlebars', engine({ defaultLayout: 'main' }));
+app.engine('handlebars', engine({
+    defaultLayout: 'main',
+    partialsDir: __dirname + '/views/partials',
+    helpers: {
+        eq: function (a, b) {
+            return a === b;
+        },
+    },
+}));
 app.set('view engine', 'handlebars');
 
 //knex
@@ -37,6 +45,11 @@ app.use(passport.session());
 //public folder
 app.use(express.static("public"));
 
+app.use((req, res, next) => {
+    res.locals.user = req.user;
+    next();
+});
+
 //routes
 const isLoggedIn = require("./auth/check-login").isLoggedIn;
 
@@ -52,6 +65,9 @@ app.use('/profile', profileRoutes);
 
 const jobRoutes = require('./routers/jobs');
 app.use('/jobs', jobRoutes);
+
+const postRoutes = require('./routers/posts');
+app.use('/posts', postRoutes);
 
 //server is listening
 app.listen(8000, () => {

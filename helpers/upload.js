@@ -1,20 +1,12 @@
-const formatJobDate = jobInfo => {
-    jobInfo.map((job) => {
-        const formattedDate = job.job_updated_date.toLocaleDateString("en-US", {
-            month: "short",
-            day: "numeric",
-        });
-        return { ...job, job_updated_date: formattedDate };
-    });
-}
+const fs = require('fs');
 
-const uploadProfilePic = req => {
-    const profilePic = req.files ? req.files.profilepic : null;
-    const profilePicName = 'profilepicture' + req.user.id;
-    const profilePicDestination = "public/images/profilepics";
+const uploadPicture = (req, name, picturename, destination) => {
+    const picture = req.files ? req.files[name] : null;
+    const pictureName = picturename + req.user.id;
+    const pictureDestination = `public/images/${destination}`;
     
-    if (profilePic) {
-        profilePic.mv(`${profilePicDestination}/${profilePicName}`, (err) => {
+    if (picture) {
+        picture.mv(`${pictureDestination}/${pictureName}`, (err) => {
             if (err) {
                 console.log(err);
             }
@@ -58,13 +50,21 @@ const uploadResume = req => {
             if (err) {
                 console.log(err);
             }
-        })
+        });
     }
 }
 
+const retrievePicture = (pictureArray, folder) => {
+    return pictureArray.map(pic => {
+        const imagePath = `/images/${folder}/${pic.name}${pic.userId}`;
+        const exists = fs.existsSync(`public${imagePath}`);
+        return exists ? imagePath : null;
+    })
+}
+
 module.exports = {
-    formatJobDate,
-    uploadProfilePic,
+    uploadPicture,
     uploadProjectPics,
-    uploadResume
+    uploadResume,
+    retrievePicture
 }

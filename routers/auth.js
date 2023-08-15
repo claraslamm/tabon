@@ -8,7 +8,7 @@ const notLoggedIn = require('../auth/check-login').notLoggedIn;
 
 //signup page
 router.get('/signup', notLoggedIn, (req, res) => {
-    res.render('signup');
+    res.render('signup', { layout: 'alt' });
 })
 
 router.post('/signup',
@@ -20,7 +20,7 @@ router.post('/signup',
 
 //login page
 router.get('/login', notLoggedIn, (req, res) => {
-    res.render('login');
+    res.render('login', { layout: 'alt' });
 })
 
 router.post('/login',

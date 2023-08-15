@@ -5,6 +5,7 @@
         <th scope="col"><strong>Job Title</strong></th>
         <th scope="col"><strong>Company</strong></th>
         <th scope="col"><strong>Location</strong></th>
+        <th scope="col"><strong>Status</strong></th>
     </thead>
     <tbody>
         {{#each jobs}}
@@ -12,6 +13,7 @@
             <td><a href="/jobs/jobdetails/{{this.job_id}}">{{this.job_title}}</a></td>
             <td><a href="">{{this.company_name}}</a></td>
             <td>{{this.location}}</td>
+            <td>{{this.application_status}}</td>
         </tr>
         {{/each}}
     </tbody>
