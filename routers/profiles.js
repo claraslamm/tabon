@@ -31,9 +31,11 @@ router.get('/createprofile', isLoggedIn, async (req, res) => {
     let userProfile = await knex('user_profiles').where({ user_id: req.user.id }).first();
     let companyProfile = await knex('company_profiles').where({ user_id: req.user.id }).first();
 
-    if (userProfile || companyProfile) {
-        res.redirect(`/profile/${req.user.username}`);
-    } else {
+    if (userProfile) {
+        res.redirect(`/profile/user/${req.user.username}`);
+    } else if (companyProfile) {
+        res.redirect(`/profile/company/${req.user.username}`);
+    } else{
         res.render("createProfile");
     }
 })
@@ -144,7 +146,7 @@ router.get('/user/:myprofile', async (req, res) => {
     const isUser = currentUser.username === username ? true : false; 
 
     const userInfo = await knex('users')
-        .select()
+        //.select()
         .join('user_profiles', 'users.id', '=', 'user_profiles.user_id')
         .join('user_projects', 'users.id', '=', 'user_projects.user_profile_id')
         .where({ username }).first()
@@ -198,5 +200,16 @@ router.get('/resume/:id', (req, res) => {
 
     res.render('viewResume', { resumePath: resumePath });
 });
+
+router.get('/company/:companyname'), async (req, res) => {
+    let username = req.params.myprofile;
+
+    const companyInfo = await knex('users')
+    .join('company_profiles', 'company_profiles.user_id', '=', 'users.id')
+    .where({ username }).first()
+
+    console.log(companyInfo);
+
+}
 
 module.exports = router;
