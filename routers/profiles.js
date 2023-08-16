@@ -1,9 +1,11 @@
 const router = require('express').Router();
-const isLoggedIn = require('../auth/check-login').isLoggedIn;
-
+const { isLoggedIn } = require('../auth/check-login');
+const { uploadProfilePic, uploadProjectPics, uploadResume } = require('../helpers/helpers');
 const knexfile = require("../knexfile").development;
 const knex = require("knex")(knexfile);
+const fs = require('fs');
 
+//routes
 router.get('/createusername', isLoggedIn, (req, res) => {
     if (!req.user.username) {
         res.render("createUsername");
@@ -64,17 +66,19 @@ router.post('/createprofile', async (req, res) => {
         user_profile_id: user_id
     }
 
+    uploadProjectPics(req);
+
     if (req.body.user_type === "user") {
         await knex('user_profiles').insert(newUserProfile)
         await knex('user_projects').insert(newProject);
+        res.redirect(`/profile/user/${req.user.username}`);
     } else {
         await knex('company_profiles').insert(newCompanyProfile);
+        res.redirect(`/profile/company/${req.user.username}`);
     }
+});
 
-    res.redirect(`/profile/${req.user.username}`);
-})
-
-router.get('/edituserprofile', async (req, res) => {
+router.get('/edituserprofile', isLoggedIn, async (req, res) => {
     const id = req.user.id;
     const userInfo = await knex("user_profiles").where({ user_id: id }).first();
     const projectInfo = await knex("user_projects").where({ user_profile_id: id }).first();
@@ -83,6 +87,11 @@ router.get('/edituserprofile', async (req, res) => {
 
 router.post('/edituserprofile', async (req, res) => {
     const id = req.user.id;
+
+    uploadProfilePic(req);
+    uploadProjectPics(req);
+    uploadResume(req);
+
     const updateUserProfile = {
         first_name: req.body.firstname,
         last_name: req.body.lastname,
@@ -97,11 +106,11 @@ router.post('/edituserprofile', async (req, res) => {
 
     await knex('user_profiles').where({ user_id: id }).update(updateUserProfile);
     await knex('user_projects').where({ user_profile_id: id }).update(updateProjectInfo);
-    res.redirect('/');
+    res.redirect(`/profile/user/${req.user.username}`);
 })
 
 
-router.get('/editcompanyprofile', async (req, res) => {
+router.get('/editcompanyprofile', isLoggedIn, async (req, res) => {
     const id = req.user.id;
     const companyInfo = await knex("company_profiles").where({user_id: id}).first();
     res.render("companyEditProfile", {companyInfo: companyInfo});
@@ -123,17 +132,71 @@ router.post('/editcompanyprofile', async (req, res) => {
     res.redirect('/');
 })
 
-router.get('/:myprofile', async (req, res) => {
+router.get('/user/:myprofile', async (req, res) => {
+    
     let username = req.params.myprofile;
+    let user_id = req.user ? req.user.id : null;
+
+    const currentUser = await knex('users')
+        .where({ id: user_id }).first();
+    
+    //checking if current user is the same as that of the profile being viewed
+    const isUser = currentUser.username === username ? true : false; 
 
     const userInfo = await knex('users')
         .select()
         .join('user_profiles', 'users.id', '=', 'user_profiles.user_id')
-        // .join('user_projects', 'users.id', '=', 'user_projects.user_profile_id')
+        .join('user_projects', 'users.id', '=', 'user_projects.user_profile_id')
         .where({ username }).first()
 
-    console.log(userInfo);
-    res.render("profile", { userInfo: userInfo });
+    if (!userInfo) {
+        return res.redirect('/'); //if user cannot be found, redirect back to home page
+    }
+
+    let profilePic = [
+        {name: "profilepicture", userId: userInfo.user_id },
+    ];
+    
+    const profilePicPath = profilePic.map(pic => {
+        const imagePath = `/images/profilepics/profilepicture${pic.userId}`;
+        const exists = fs.existsSync(`public${imagePath}`);
+        return exists ? imagePath : null;
+    });
+
+    const projectPics = [
+      { name: "projectpicture1", userId: userInfo.user_id },
+      { name: "projectpicture2", userId: userInfo.user_id },
+      { name: "projectpicture3", userId: userInfo.user_id },
+    ];
+
+    const imagePaths = projectPics.map(pic => {
+        const imagePath = `/images/projectpics/${pic.name}${pic.userId}`;
+        const exists = fs.existsSync(`public${imagePath}`);
+        return exists ? imagePath : null;
+    })
+    
+    res.render("profile", { isUser: isUser, userInfo: userInfo, imagePaths: imagePaths, profilePicPath: profilePicPath });
+});
+
+router.get('/resume/:id', (req, res) => {
+    const userId = req.params.id;
+
+    const resumePathDocx = `public/resumes/resume${userId}.docx`;
+    const resumePathPdf = `public/resumes/resume${userId}.pdf`;
+    let resumePath;
+
+    const docxExists = fs.existsSync(resumePathDocx);
+    const pdfExists = fs.existsSync(resumePathPdf);
+
+    if (pdfExists) {
+        resumePath = `/resumes/resume${userId}.pdf`;
+    } else if (docxExists) {
+        resumePath = `/resumes/resume${userId}.docx`;
+    } else {
+        resumePath = null;
+    }
+
+    res.render('viewResume', { resumePath: resumePath });
 });
 
 module.exports = router;

@@ -15,13 +15,17 @@ const knex = require("knex")(knexfile);
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
+//uploading files
+const fileUpload = require("express-fileupload");
+app.use(fileUpload());
+
 //passport and sessions
 const session = require("express-session");
 const passport = require('./auth/passport-config');
 
 app.use(
     session({
-        secret: 'ExpectoPatronum',
+        secret: 'WingardiumLeviosa',
         resave: false,
         saveUninitialized: false,
     })
@@ -46,7 +50,8 @@ app.use('/auth', authRoutes);
 const profileRoutes = require('./routers/profiles');
 app.use('/profile', profileRoutes);
 
-
+const jobRoutes = require('./routers/jobs');
+app.use('/jobs', jobRoutes);
 
 //server is listening
 app.listen(8000, () => {

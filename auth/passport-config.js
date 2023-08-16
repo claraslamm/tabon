@@ -27,7 +27,7 @@ passport.use("local-signup", new LocalStrategy(
         let emailExists = await knex('users').where({ email: req.body.email }).first();
         if (emailExists) {
             return done(null, false, {
-                message: "This is email has already been used to create an account"
+                message: "This email has already been used to create an account"
             })
         }
 

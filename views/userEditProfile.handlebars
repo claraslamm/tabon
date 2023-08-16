@@ -1,7 +1,14 @@
 <a href="#" class="logo">Tabon</a>
 
-<form action="/profile/edituserprofile" method="POST">
+<form action="/profile/edituserprofile" method="POST" enctype="multipart/form-data">
   <h4>Edit Your User's Profile</h4>
+  <br>
+
+  <label for="profilepic">Upload your profile picture</label>
+  <br>
+  <input type="file" id="profilepic" name="profilepic">
+  <br>
+  <button type="submit">Upload</button>
   <br>
 
   <label for="firstname">First Name</label>
@@ -28,8 +35,11 @@
     <br>
 
     <label for="uploadproject">Upload your project</label>
-    <input type="file" id="uploadproject" name="uploadproject" accept="image/png, image/jpeg">
-    <br>
+    <div id="uploadproject">
+      <input type="file" name="projectpic1" accept="image/png, image/jpeg">
+      <input type="file" name="projectpic2" accept="image/png, image/jpeg">
+      <input type="file" name="projectpic3" accept="image/png, image/jpeg">
+    </div>
   </div>
 
 

@@ -1,0 +1,10 @@
+
+{{#if resumePath}}
+<object data="{{resumePath}}" type="application/pdf" width="100%" height="600px">
+    <p>
+        Unable to display resume. <a href="{{resumePath}}">Click here to download it instead.</a>
+    </p>
+</object>
+{{else}}
+<p>This user has not uploaded a resume.</p>
+{{/if}}

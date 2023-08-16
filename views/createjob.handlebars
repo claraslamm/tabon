@@ -1,0 +1,38 @@
+<h3>List your job here:</h3>
+
+<p>All fields must be filled</p>
+
+<form action="/jobs/createjob" method="POST" enctype="multipart/form-data">
+    <label for="jobtitle">Job Title:</label>
+    <br>
+    <input type="text" name="jobtitle" id="jobtitle" required>
+    <br>
+
+    <label for="jobnature">What is the nature of this job? (Full-time, part-time, temp, contract etc...)</label>
+    <br>
+    <input type="text" name="jobnature" id="jobnature" required>
+    <br>
+
+    <label for="jobremote">Does this job work remotely?</label>
+    <div id="jobremote">
+        <label for="remotetrue">Yes</label>
+        <input type="radio" id="remotetrue" name="jobremote" value="yes">
+        <label for="remotefalse">No</label>
+        <input type="radio" id="remotefalse" name="jobremote" value="no">
+    </div>
+
+    <label for="location">Where is this job located?</label>
+    <br>
+    <input type="text" name="location" id="location" required>
+    <br>
+
+    <label for="jobdescription">Give a detailed job description below:</label>
+    <br>
+    <textarea id="jobdescription" name="jobdescription" required></textarea>
+    <br>
+
+    <label for="jobpic">Upload a picture to market your job</label>
+    <input type="file" name="jobpic" accept="image/png, image/jpeg">
+    
+    <button type="submit">Create Job</button>
+</form>

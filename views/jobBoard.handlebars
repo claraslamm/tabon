@@ -1,0 +1,34 @@
+<h1>This is the Job Board</h1>
+{{#if isCompany}}
+<a href="/jobs/listedjobs">Listed Jobs</a>
+{{else}}
+<a href="/jobs/appliedjobs">Jobs Applied for</a>
+{{/if}}
+
+<br>
+<br>
+
+{{#if isCompany}}
+<a href="/jobs/createjob">Create Job</a>
+{{/if}}
+
+<br>
+<br>
+
+<table>
+    <thead>
+        <th scope="col"><strong>Job Title</strong></th>
+        <th scope="col"><strong>Company</strong></th>
+        <th scope="col"><strong>Last Updated</strong></th>
+    </thead>
+
+    <tbody>
+        {{#each jobInfo}}
+            <tr>
+                <td><a href="/jobs/jobdetails/{{this.id}}">{{this.job_title}}</a></td>
+                <td>{{this.company_name}}</td>
+                <td>{{this.job_updated_date}}</td>
+            </tr>
+        {{/each}}
+    </tbody>
+</table>
