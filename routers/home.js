@@ -27,16 +27,11 @@ router.get('/', async (req, res) => {
             'user_posts.post_summary as job_summary',
             'user_posts.post_time as post_time'
         );
-    
-    // console.log(jobListings);
-    // console.log(userPosts);
 
     const combinedPosts = [...jobListings, ...userPosts];
     const sortedPosts = combinedPosts.sort((a, b) => {
         return b.post_time - a.post_time;
     });
-
-    console.log(sortedPosts);
 
     res.render('home', { sortedPosts: sortedPosts });
 });

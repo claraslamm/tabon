@@ -45,8 +45,11 @@ app.use(passport.session());
 //public folder
 app.use(express.static("public"));
 
-app.use((req, res, next) => {
+app.use( async (req, res, next) => {
     res.locals.user = req.user;
+    
+    user_id = req.user ? req.user.id : null;
+    res.locals.userProfiles = await knex('user_profiles').where({ user_id: user_id }).first();
     next();
 });
 

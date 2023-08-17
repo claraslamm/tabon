@@ -11,8 +11,8 @@ exports.up = function(knex) {
         table.string('job_nature').notNullable();
         table.string('job_remote').notNullable();
         table.string('location').notNullable();
-        table.string('job_summary').notNullable();
-        table.string('job_description').notNullable();
+        table.string('job_summary', 2000).notNullable();
+        table.string('job_description', 5000).notNullable();
         table.timestamp("job_updated_date").defaultTo(knex.fn.now());
         table.string('job_status').notNullable();
   })

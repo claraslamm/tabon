@@ -2,7 +2,12 @@ const fs = require('fs');
 
 const uploadPicture = (req, name, picturename, destination, extraid) => {
     const picture = req.files ? req.files[name] : null;
-    const pictureName = picturename + req.user.id + extraid;
+    let pictureName;
+    if (extraid) {
+        pictureName = picturename + req.user.id + extraid;
+    } else {
+        pictureName = picturename + req.user.id
+    }
     const pictureDestination = `public/images/${destination}`;
     
     if (picture) {
@@ -56,8 +61,14 @@ const uploadResume = req => {
 
 const retrievePicture = (pictureArray, folder, id) => {
     return pictureArray.map(pic => {
-        const imagePath = `/images/${folder}/${pic.name}${pic.userId}/${id}`;
+        let imagePath;
+        if (id) {
+            imagePath = `/images/${folder}/${pic.name}${pic.userId}${id}`;
+        } else {
+            imagePath = `/images/${folder}/${pic.name}${pic.userId}`;
+        }
         const exists = fs.existsSync(`public${imagePath}`);
+        console.log(imagePath);
         return exists ? imagePath : null;
     })
 }
