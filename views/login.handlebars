@@ -12,6 +12,12 @@
 <input type="password" id="password" name="password">
 
 <br>
+
+{{#if message}}
+<span class="errormessage">{{message}}</span>
+{{/if}}
+
+<br>
 <br>
 <button type="submit" id="sign-in-button">Sign in</button>
 

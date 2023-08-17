@@ -13,7 +13,13 @@
 
         <label for="email" class="form-label">Email</label> <br>
         <input type="text" id="email" name="email" required>
+        
+        <br>
 
+        {{#if message}}
+            <span class="errormessage">{{message}}</span>
+        {{/if}}
+        
         <br>
         <br>
 
