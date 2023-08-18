@@ -1,8 +1,20 @@
+{{#if isCompany}}
+<button class="edit-btn"><a href="/profile/editcompanyprofile">Edit Profile</a></button>
+<br>
+{{/if}}
+
+{{#each logoPath}}
+{{#if this}}
+<img src="{{this}}" alt="Company Logo" class="profilepicture">
+{{else}}
+<img src="/images/profilepics/default-profile-pic.jpg" class="profilepicture" alt="Profile Picture">
+{{/if}}
+{{/each}}
+
 <p>{{companyInfo.company_name}}</p>
 <p>{{companyInfo.company_website}}</p>
-<p>{{companyInfo.headcount}}</p>
-<p>{{companyInfo.company_remote}}</p>
-<button>Edit Company Profile</button>
+<p>Employees: {{companyInfo.headcount}}</p>
+<p>Remote: {{companyInfo.company_remote}}</p>
 
 <h2>About</h2>
 <p>{{companyInfo.company_description}}</p>
