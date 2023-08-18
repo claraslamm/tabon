@@ -126,6 +126,9 @@ router.get('/editcompanyprofile', isLoggedIn, async (req, res) => {
 
 router.post('/editcompanyprofile', async (req, res) => {
     const id = req.user.id;
+
+    uploadPicture(req, 'companylogo', 'companylogo', 'companylogos');
+
     const updateCompanyProfile = {
         company_name: req.body.companyname,
         company_website: req.body.companywebsite,
@@ -137,7 +140,7 @@ router.post('/editcompanyprofile', async (req, res) => {
     }
 
     await knex('company_profiles').where({user_id: id}).update(updateCompanyProfile);
-    res.redirect('/');
+    res.redirect(`/profile/company/${req.user.username}`);
 })
 
 router.get('/user/:myprofile', async (req, res) => {
@@ -201,20 +204,39 @@ router.get('/resume/:id', (req, res) => {
 });
 
 router.get('/company/:companyname', async (req, res) => {
+    
     let username = req.params.companyname;
+    let user_id = req.user ? req.user.id : null;
+
+    //checking if company is viewing it's own page
+    const currentCompany = await knex('users').where({ id: user_id }).first();
+
+    let isCompany;
+    if (user_id) {
+        isCompany = currentCompany.username === username ? true : false;
+    }
 
     const companyInfo = await knex('users')
-    .join('company_profiles', 'company_profiles.user_id', '=', 'users.id')
-    .where({ username }).first()
-
+        .join('company_profiles', 'company_profiles.user_id', '=', 'users.id')
+        .where({ username }).first()
+    
+    //redirect to home page if company profile page doesn't exist
+    if (!companyInfo) {
+        return res.redirect('/')
+    }
+    
+    let companyLogo = [
+        { name: "companylogo", userId: companyInfo.user_id }
+    ];
+    const logoPath = retrievePicture(companyLogo, 'companylogos');
+    
     const companyJobs = await knex('job_listings')
     .join('company_profiles', 'company_profiles.user_id', '=', 'job_listings.company_id')
     .join('users', 'company_profiles.user_id', '=', 'users.id')
     .select('job_listings.id as job_id', 'job_listings.job_title', 'job_listings.location', 'job_listings.job_nature','job_listings.job_remote')
     .where({ username })
-    console.log(companyJobs);
 
-    res.render("companyProfile", {companyInfo: companyInfo, companyJobs: companyJobs});
+    res.render("companyProfile", { companyInfo: companyInfo, companyJobs: companyJobs, logoPath: logoPath, isCompany: isCompany });
 
 })
 

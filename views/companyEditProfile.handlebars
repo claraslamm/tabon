@@ -1,7 +1,14 @@
 <a href="#" class="logo">Tabon</a>
 
-<form action="/profile/editcompanyprofile" method="POST">
+<form action="/profile/editcompanyprofile" method="POST" enctype="multipart/form-data">
   <h4>Edit Your Company's Profile</h4>
+
+  <label for="companylogo">Upload your profile picture</label>
+  <br>
+  <input type="file" id="companylogo" name="companylogo">
+  <br>
+  <button type="submit">Upload</button>
+  <br>
 
   <label for="companyname">Your company's name</label>
   <input type="text" id="companyname" value="{{companyInfo.company_name}}" name="companyname">
