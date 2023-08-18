@@ -1,13 +1,10 @@
-{{#if user}}
-    {{#if userProfiles}}
-        <p>Hello {{userProfiles.first_name}}</p>
-    {{else}}
-        <p>company sees this</p>
-    {{/if}}
-{{/if}}
 
-{{#if user}}
+
+
+
+{{!-- {{#if user}}
 <nav>
+  
     {{#if userProfiles}}
     <a href="/profile/user/{{user.username}}">Profile</a>
     {{else}}
@@ -21,4 +18,33 @@
     <a href="/jobs">Jobs</a>
     <a href="/auth/login">Login</a>
 </nav>
-{{/if}}
+{{/if}} --}}
+<html>
+<body>
+<h2 class="logo"><a href="/"></a>Tabon</h2>
+
+<div class="action">
+
+<div class="profile" onclick="menuToggle();">
+<img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2380&q=80">
+</div>
+
+<div class="menu">
+  
+    <h3>Tommy Bruise<br><span>tombruise@gmail.com</h3>
+    <ul>
+       <li>Profile</li><a href="#"></a> 
+       <li>Edit Profile</li><a href="#"></a> 
+       <li>Job Board</li><a href="#"></a> 
+       <li>Log out</li><a href="#"></a> 
+         </ul>
+</div>
+</div>
+<script>
+    function menuToggle() {
+        const toggleMenu = document.querySelector('.menu');
+        toggleMenu.classList.toggle('active')
+    }
+</script>
+</body>
+</html> 
