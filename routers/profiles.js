@@ -201,15 +201,22 @@ router.get('/resume/:id', (req, res) => {
     res.render('viewResume', { resumePath: resumePath });
 });
 
-router.get('/company/:companyname'), async (req, res) => {
-    let username = req.params.myprofile;
+router.get('/company/:companyname', async (req, res) => {
+    let username = req.params.companyname;
 
     const companyInfo = await knex('users')
     .join('company_profiles', 'company_profiles.user_id', '=', 'users.id')
     .where({ username }).first()
 
-    console.log(companyInfo);
+    const companyJobs = await knex('job_listings')
+    .join('company_profiles', 'company_profiles.user_id', '=', 'job_listings.company_id')
+    .join('users', 'company_profiles.user_id', '=', 'users.id')
+    .select('job_listings.id as job_id', 'job_listings.job_title', 'job_listings.location', 'job_listings.job_nature','job_listings.job_remote')
+    .where({ username })
+    console.log(companyJobs);
 
-}
+    res.render("companyProfile", {companyInfo: companyInfo, companyJobs: companyJobs});
+
+})
 
 module.exports = router;

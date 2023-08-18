@@ -1,0 +1,14 @@
+<p>{{companyInfo.company_name}}</p>
+<p>{{companyInfo.company_website}}</p>
+<p>{{companyInfo.headcount}}</p>
+<p>{{companyInfo.company_remote}}</p>
+<button>Edit Company Profile</button>
+
+<h2>About</h2>
+<p>{{companyInfo.company_description}}</p>
+
+{{#each companyJobs}}
+<p>{{this.job_title}}</p>
+<p>{{this.location}}</p>
+<a href="/jobs/jobdetails/{{this.job_id}}"><button>View Role</button></a>
+{{/each}}
