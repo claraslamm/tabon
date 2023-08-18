@@ -6,13 +6,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const companyForm = document.querySelector('#companyForm');
 
     user.addEventListener('change', () => {
-        userForm.style = "display:block";
+        userForm.style = "display:flex";
         companyForm.style = "display:none";
     })
 
     company.addEventListener('change', () => {
         userForm.style = "display:none";
-        companyForm.style = "display:block";
+        companyForm.style = "display:flex";
     })
 
 });

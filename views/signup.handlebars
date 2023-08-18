@@ -1,52 +1,63 @@
-<h1 class="page-header">Signup to Tabon here</h1>
+<div class="logo">
+    <h1>Tabon</h1>
+    <div class="login">
+        <h4>Welcome to Tabon.</h4>
+        <p class="sub-text">Create your Tabon account here</p>
 
-<div id="form-container">
-    <form action="/auth/signup" method="POST" id="signup-form">
-        <label for="username">Username</label> <br>
-        <input type="text" id="username" name="username" required>
-        <br>
+        <form action="/auth/signup" method="POST" id="signup-form">
+            <div class="input">
+                <div>
+                    <label for="username" class="input-label">Username</label>
+                </div>
+                <input type="text" id="username" name="username" size="40" required>
+            </div>
 
-        <label for="password" class="form-label">Password</label> <br>
-        <input type="password" id="password" name="password" required>
+            <div class="input">
+                <div>
+                    <label for="password" class="input-label">Password</label>
+                </div>
+                <input type="password" id="password" name="password" size="40" required>
+            </div>
 
-        <br>
+            <div class="input">
+                <div>
+                    <label for="email" class="input-label">Email</label>
+                </div>
+                <input type="text" id="email" name="email" size="40" required>
+            </div>
 
-        <label for="email" class="form-label">Email</label> <br>
-        <input type="text" id="email" name="email" required>
-        
-        <br>
+            <div class="errormessage">
+                {{#if message}}
+                    <span>{{message}}</span>
+                {{/if}}
+            </div>
 
-        {{#if message}}
-            <span class="errormessage">{{message}}</span>
-        {{/if}}
-        
-        <br>
-        <br>
+            <div class="submit-button">
+                <button type="submit">Create User</button>
+            </div>
+        </form>
 
-        <button type="submit">Create User</button>
-    </form>
 
-    <br>
-    <br>
-    <br>
+        <span class="or-signin-with">or create account with</span>
 
-    <script src="https://accounts.google.com/gsi/client" async defer></script>
-    <div id="g_id_onload"
-        data-client_id="766503252879-acses2et0cque9g9aik1eiioari85si6.apps.googleusercontent.com"
-        data-login_uri="/auth/google"
-        data-auto_prompt="false">
+        <div class="google-button">
+            <script src="https://accounts.google.com/gsi/client" async defer></script>
+            <div id="g_id_onload"
+                data-client_id="766503252879-acses2et0cque9g9aik1eiioari85si6.apps.googleusercontent.com"
+                data-login_uri="/auth/google"
+                data-auto_prompt="false">
+            </div>
+            <div class="g_id_signin"
+                data-type="standard"
+                data-size="large"
+                data-theme="outline"
+                data-text="sign_in_with"
+                data-shape="rectangular"
+                data-logo_alignment="left"
+                data-width="100">
+            </div>
+        </div>
+
+        <p>Already have an account? <a href="/auth/login">Sign in here.</a></p>
     </div>
-    <div class="g_id_signin"
-        data-type="standard"
-        data-size="large"
-        data-theme="outline"
-        data-text="sign_in_with"
-        data-shape="rectangular"
-        data-logo_alignment="left"
-        data-width="100">
-    </div>
-
-    {{!-- <a href="/auth/google">Sign up with google</a> --}}
-
-    <p>Already have an account? <a href="/auth/login">Sign in</a></p>
 </div>

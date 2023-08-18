@@ -11,13 +11,6 @@ router.get('/signup', notLoggedIn, (req, res) => {
     res.render('signup', { layout: 'alt' });
 })
 
-// router.post('/signup',
-//     passport.authenticate('local-signup', {
-//         successRedirect: "/profile/createprofile",
-//         failureRedirect: "/auth/signup",
-//     })
-// )
-
 router.post('/signup', (req, res, next) => {
     passport.authenticate('local-signup', (err, user, info) => {
         
@@ -28,7 +21,7 @@ router.post('/signup', (req, res, next) => {
         if (!user) {
             if (info.message === "This username has already been taken") {
                 return res.render('signup', { layout: 'alt', message: info.message });
-            } else if (info.message === "This email has already been used to create an account") {
+            } else if (info.message === "This email has already been used") {
                 return res.render('signup', { layout: 'alt', message: info.message });
             } else {
                 return res.render('signup', { layout: 'alt', message: info.message });
@@ -39,7 +32,7 @@ router.post('/signup', (req, res, next) => {
             if (err) {
                 return next(err);
             }
-            return res.redirect('/');
+            return res.redirect('/profile/createprofile');
         });
     })(req, res, next);
 })
@@ -48,13 +41,6 @@ router.post('/signup', (req, res, next) => {
 router.get('/login', notLoggedIn, (req, res) => {
     res.render('login', { layout: 'alt' });
 });
-
-// router.post('/login',
-//     passport.authenticate('local-login', {
-//         successRedirect: "/",
-//         failureRedirect: "/auth/login"
-//     })
-// );
 
 router.post('/login', (req, res, next) => {
     passport.authenticate('local-login', (err, user, info) => {
@@ -77,7 +63,7 @@ router.post('/login', (req, res, next) => {
             if (err) {
                 return next(err);
             }
-            return res.redirect('/');
+            return res.redirect('/profile/createprofile');
         });
     })(req, res, next);
 });

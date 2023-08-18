@@ -8,7 +8,7 @@ const fs = require('fs');
 //routes
 router.get('/createusername', isLoggedIn, (req, res) => {
     if (!req.user.username) {
-        res.render("createUsername");
+        res.render("createUsername", { layout: 'alt' });
     } else {
         res.redirect('/profile/createprofile')
     }
@@ -20,14 +20,20 @@ router.post('/createusername', async (req, res) => {
     const userId = req.user.id;
     const username = req.body.username;
 
-    await knex('users')
-        .where({ id: userId })
-        .update({ username: username });
+    usernameExists = await knex('users').where({ username }).first();
+    if (usernameExists) {
+        res.render("createUsername", { layout: 'alt', message: usernameExists })
+    } else {
+        await knex('users')
+            .where({ id: userId })
+            .update({ username: username });
 
-    res.redirect('/profile/createprofile')
+        res.redirect('/profile/createprofile')
+    }
 })
 
 router.get('/createprofile', isLoggedIn, async (req, res) => {
+    
     let userProfile = await knex('user_profiles').where({ user_id: req.user.id }).first();
     let companyProfile = await knex('company_profiles').where({ user_id: req.user.id }).first();
 
@@ -35,10 +41,10 @@ router.get('/createprofile', isLoggedIn, async (req, res) => {
         res.redirect(`/profile/user/${req.user.username}`);
     } else if (companyProfile) {
         res.redirect(`/profile/company/${req.user.username}`);
-    } else{
-        res.render("createProfile");
+    } else {
+        res.render("createProfile", { layout: "alt" });
     }
-})
+});
 
 router.post('/createprofile', async (req, res) => {
 

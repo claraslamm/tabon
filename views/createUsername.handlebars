@@ -1,7 +1,25 @@
-<form action="/profile/createusername" method="POST">
-    <label for="username">Select a username for your account</label>
-    <br>
-    <input type="text" id="username" name="username">
-    <br>
-    <button type="submit">Submit</button>
-</form>
+<div class="logo">
+
+    <h1>Tabon</h1>
+
+    <div class="login">
+        <form action="/profile/createusername" method="POST">
+            <div class="input">
+                <div>
+                    <label for="username" class="select-username">Select a username for your account</label>
+                </div>
+                <input type="text" id="username" name="username" size="40">
+            </div>
+
+            <div class="errormessage">
+                {{#if message}}
+                    <span>Username already taken</span>
+                {{/if}}
+            </div>
+
+            <div class="submit-button create-username">
+                <button type="submit">Create Username</button>
+            </div>
+        </form>
+    </div>
+</div>

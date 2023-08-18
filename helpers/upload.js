@@ -68,7 +68,6 @@ const retrievePicture = (pictureArray, folder, id) => {
             imagePath = `/images/${folder}/${pic.name}${pic.userId}`;
         }
         const exists = fs.existsSync(`public${imagePath}`);
-        console.log(imagePath);
         return exists ? imagePath : null;
     })
 }
