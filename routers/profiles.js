@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const { isLoggedIn } = require('../auth/check-login');
-const { uploadProfilePic, uploadProjectPics, uploadResume } = require('../helpers/helpers');
+const { uploadPicture, uploadProjectPics, uploadResume, retrievePicture } = require('../helpers/upload');
 const knexfile = require("../knexfile").development;
 const knex = require("knex")(knexfile);
 const fs = require('fs');
@@ -8,7 +8,7 @@ const fs = require('fs');
 //routes
 router.get('/createusername', isLoggedIn, (req, res) => {
     if (!req.user.username) {
-        res.render("createUsername");
+        res.render("createUsername", { layout: 'alt' });
     } else {
         res.redirect('/profile/createprofile')
     }
@@ -20,14 +20,20 @@ router.post('/createusername', async (req, res) => {
     const userId = req.user.id;
     const username = req.body.username;
 
-    await knex('users')
-        .where({ id: userId })
-        .update({ username: username });
+    usernameExists = await knex('users').where({ username }).first();
+    if (usernameExists) {
+        res.render("createUsername", { layout: 'alt', message: usernameExists })
+    } else {
+        await knex('users')
+            .where({ id: userId })
+            .update({ username: username });
 
-    res.redirect('/profile/createprofile')
+        res.redirect('/profile/createprofile')
+    }
 })
 
 router.get('/createprofile', isLoggedIn, async (req, res) => {
+    
     let userProfile = await knex('user_profiles').where({ user_id: req.user.id }).first();
     let companyProfile = await knex('company_profiles').where({ user_id: req.user.id }).first();
 
@@ -35,10 +41,10 @@ router.get('/createprofile', isLoggedIn, async (req, res) => {
         res.redirect(`/profile/user/${req.user.username}`);
     } else if (companyProfile) {
         res.redirect(`/profile/company/${req.user.username}`);
-    } else{
-        res.render("createProfile");
+    } else {
+        res.render("createProfile", { layout: "alt" });
     }
-})
+});
 
 router.post('/createprofile', async (req, res) => {
 
@@ -90,7 +96,7 @@ router.get('/edituserprofile', isLoggedIn, async (req, res) => {
 router.post('/edituserprofile', async (req, res) => {
     const id = req.user.id;
 
-    uploadProfilePic(req);
+    uploadPicture(req, 'profilepic', 'profilepicture', 'profilepics');
     uploadProjectPics(req);
     uploadResume(req);
 
@@ -139,43 +145,36 @@ router.get('/user/:myprofile', async (req, res) => {
     let username = req.params.myprofile;
     let user_id = req.user ? req.user.id : null;
 
+    //checking if current user is the same as that of the profile being viewed
     const currentUser = await knex('users')
         .where({ id: user_id }).first();
     
-    //checking if current user is the same as that of the profile being viewed
-    const isUser = currentUser.username === username ? true : false; 
+    let isUser;
+    if (user_id) { //if statement so non-logged in users do not throw an error
+        isUser = currentUser.username === username ? true : false; 
+    }
 
     const userInfo = await knex('users')
-        //.select()
         .join('user_profiles', 'users.id', '=', 'user_profiles.user_id')
         .join('user_projects', 'users.id', '=', 'user_projects.user_profile_id')
         .where({ username }).first()
 
+    //if user cannot be found, redirect back to home page
     if (!userInfo) {
-        return res.redirect('/'); //if user cannot be found, redirect back to home page
+        return res.redirect('/'); 
     }
 
     let profilePic = [
-        {name: "profilepicture", userId: userInfo.user_id },
+        { name: "profilepicture", userId: userInfo.user_id },
     ];
+    const profilePicPath = retrievePicture(profilePic, 'profilepics');
     
-    const profilePicPath = profilePic.map(pic => {
-        const imagePath = `/images/profilepics/profilepicture${pic.userId}`;
-        const exists = fs.existsSync(`public${imagePath}`);
-        return exists ? imagePath : null;
-    });
-
     const projectPics = [
       { name: "projectpicture1", userId: userInfo.user_id },
       { name: "projectpicture2", userId: userInfo.user_id },
       { name: "projectpicture3", userId: userInfo.user_id },
     ];
-
-    const imagePaths = projectPics.map(pic => {
-        const imagePath = `/images/projectpics/${pic.name}${pic.userId}`;
-        const exists = fs.existsSync(`public${imagePath}`);
-        return exists ? imagePath : null;
-    })
+    const imagePaths = retrievePicture(projectPics, 'projectpics');
     
     res.render("profile", { isUser: isUser, userInfo: userInfo, imagePaths: imagePaths, profilePicPath: profilePicPath });
 });

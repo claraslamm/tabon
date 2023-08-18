@@ -4,7 +4,15 @@ const app = express();
 
 //handlebars
 const { engine } = require('express-handlebars');
-app.engine('handlebars', engine({ defaultLayout: 'main' }));
+app.engine('handlebars', engine({
+    defaultLayout: 'main',
+    partialsDir: __dirname + '/views/partials',
+    helpers: {
+        eq: function (a, b) {
+            return a === b;
+        },
+    },
+}));
 app.set('view engine', 'handlebars');
 
 //knex
@@ -37,12 +45,17 @@ app.use(passport.session());
 //public folder
 app.use(express.static("public"));
 
-//routes
-const isLoggedIn = require("./auth/check-login").isLoggedIn;
+app.use( async (req, res, next) => {
+    res.locals.user = req.user;
+    
+    user_id = req.user ? req.user.id : null;
+    res.locals.userProfiles = await knex('user_profiles').where({ user_id: user_id }).first();
+    next();
+});
 
-app.get('/', isLoggedIn, (req, res) => {
-    res.render('home');
-})
+//routes
+const homeRoute = require('./routers/home');
+app.use('/', homeRoute);
 
 const authRoutes = require('./routers/auth');
 app.use('/auth', authRoutes);
@@ -52,6 +65,9 @@ app.use('/profile', profileRoutes);
 
 const jobRoutes = require('./routers/jobs');
 app.use('/jobs', jobRoutes);
+
+const postRoutes = require('./routers/posts');
+app.use('/posts', postRoutes);
 
 //server is listening
 app.listen(8000, () => {

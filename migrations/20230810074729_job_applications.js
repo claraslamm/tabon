@@ -10,6 +10,7 @@ exports.up = function(knex) {
         table.integer('user_profile_id').notNullable();
         table.foreign('user_profile_id').references('user_profiles.user_id');
         table.timestamp('application_date').defaultTo(knex.fn.now());
+        table.string('application_status').notNullable();
   })
 };
 

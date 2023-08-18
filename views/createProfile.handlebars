@@ -1,81 +1,122 @@
+<div class="logo">
 
-<form action="/profile/createprofile" method="POST" enctype="multipart/form-data">
-    <label for="user_type">Are you a job seeker or looking to hire?</label>
-    <div id="user_type">
-        <label for="typeUser">Job Seeker</label>
-        <input type="radio" id="typeUser" name="user_type" value="user">
-        <label for="typeCompany">Looking to Hire</label>
-        <input type="radio" id="typeCompany" name="user_type" value="company">
-    </div>
-    <br>
+    <h1>Tabon</h1>
 
-    <div id="userForm" style="display:none">
-        <label for="firstname">First Name</label>
-        <input type="text" id="firstname" name="firstname">
-        <br>
+    <div class="create-profile">
 
-        <label for="lastname">Last Name</label>
-        <input type="text" id="lastname" name="lastname">
-        <br>
-
-        <label for="aboutme">Tell us a little bit about yourself</label>
-        <textarea id="aboutme" name="aboutme"></textarea>
-        <br>
-
-        <label for="project">Project</label>
-        <br>
-        <div id="project">
-            <label for="projectheader">Your project's name</label>
-            <input type="text" id="projectheader" name="projectheader">
-            <br>
-
-            <label for="projectdescription">Tell us more about your project</label>
-            <textarea name="projectdescription" id="projectdescription"></textarea>
-            <br>
-
-            <label for="uploadproject">Upload your project</label>
-            <div id="uploadproject">
-            <input type="file" name="projectpic1" accept="image/png, image/jpeg">
-            <input type="file" name="projectpic2" accept="image/png, image/jpeg">
-            <input type="file" name="projectpic3" accept="image/png, image/jpeg">
+            <div class="select-usertype">
+                <label for="user_type">Are you a job seeker or looking to hire?</label>
+                <div id="user_type">
+                    <label for="typeUser">Job Seeker</label>
+                    <input type="radio" id="typeUser" name="user_type" value="user">
+                    <label for="typeCompany">Looking to Hire</label>
+                    <input type="radio" id="typeCompany" name="user_type" value="company">
+                </div>
             </div>
-            <br>
-        </div>
-    </div>
-
-    <div id="companyForm" style="display:none">
-        <label for="companyname">Company Name</label>
-        <input type="text" id="companyname" name="companyname">
-        <br>
-
-        <label for ="companydescription">Give a description of your company</label>
-        <textarea id="companydescription" name="companydescription"></textarea>
-        <br>
-
-        <label for ="companywebsite">What is your company's website</label>
-        <input type="text" id="companywebsite" name="companywebsite">
-        <br>
-
-        <label for="headcount">How many people does your company employ?</label>
-        <input type="number" id="headcount" name="headcount">
-        <br>
-
-        <label for="companyremote">Does your company offer remote work?</label>
-        <div id="companyremote">
-            <label for="remotetrue">Yes</label>
-            <input type="radio" id="remotetrue" name="companyremote" value="yes">
-            <label for="remotefalse">No</label>
-            <input type="radio" id="remotefalse" name="companyremote" value="no">
-        </div>
         
-        <label for="aboutusheader">A short header for something special about your company</label>
-        <input type="text" id="aboutusheader" name="aboutusheader">
-        <br>
-        <label for="aboutusdescription">Give us more details on what this special thing is</label>
-        <textarea id="aboutusdescription" name="aboutusdescription"></textarea>
-    </div>
+            <div id="userForm" style="display:none">
+                <form action="/profile/createprofile" method="POST" enctype="multipart/form-data">
+                    <input type="hidden" name="user_type" value="user">
+                    <div class="input">
+                        <div>
+                            <label for="firstname" class="input-label">First Name</label>
+                        </div>
+                        <input type="text" id="firstname" name="firstname" size="40" required>
+                    </div>
+            
+                    <div class="input">
+                        <div><label for="lastname" class="input-label">Last Name</label></div>
+                        <input type="text" id="lastname" name="lastname" size="40" required>
+                    </div>
+            
+                    <div class="input">
+                        <div><label for="aboutme" class="input-label">Tell us a little bit about yourself</label></div>
+                        <textarea id="aboutme" name="aboutme" class="form-textarea" required></textarea>
+                    </div>
+            
+                    <label for="project">Tell us about 1 project that you are proud of</label>
+                    <div id="project">
 
-    <button type="submit">Create Profile</button>
-</form>
+                        <div class="input">
+                            <div><label for="projectheader" class="input-label">Name</label></div>
+                            <input type="text" id="projectheader" name="projectheader" size="40" required>
+                        </div>
+
+            
+                        <div class="input">
+                            <div><label for="projectdescription" class="input-label">Provide more details below:</label></div>
+                            <textarea name="projectdescription" id="projectdescription" class="form-textarea" required></textarea>
+                        </div>
+            
+                        <label for="uploadproject">Upload up to 3 pictures from your project</label>
+                        <div id="uploadproject">
+                            <input type="file" name="projectpic1" accept="image/png, image/jpeg" class="uploadprojectpic">
+                            <input type="file" name="projectpic2" accept="image/png, image/jpeg" class="uploadprojectpic">
+                            <input type="file" name="projectpic3" accept="image/png, image/jpeg" class="uploadprojectpic">
+                        </div>
+                    </div>
+
+                    <div class="submit-button createprofile-button">
+                        <button type="submit">Create User</button>
+                    </div>
+                </form>
+            </div>
+        
+            <div id="companyForm" style="display:none">
+                <form action="/profile/createprofile" method="POST" enctype="multipart/form-data">
+
+                    <div class="input">
+                        <div><label for="companyname" class="input-label">Company Name</label></div>
+                        <input type="text" id="companyname" name="companyname" size="40" required>
+                    </div>
+            
+                    <div class="input">
+                        <div><label for ="companydescription" class="input-label">Give a description of your company</label></div>
+                        <textarea id="companydescription" name="companydescription" class="form-textarea" required></textarea>
+                    </div>
+            
+                    <div class="input">
+                        <div><label for ="companywebsite" class="input-label">Company Website</label></div>
+                        <input type="text" id="companywebsite" name="companywebsite" size="40" required>
+                    </div>
+            
+                    <div class="input">
+                        <div><label for="headcount" class="input-label">Number of Employees</label></div>
+                        <input type="number" id="headcount" name="headcount" size="40"  class="number-input" required>
+                    </div>
+            
+                    <div class="input">
+                        <label for="companyremote">Does your company offer remote work?</label>
+                        <div id="companyremote">
+                            <label for="remotetrue">Yes</label>
+                            <input type="radio" id="remotetrue" name="companyremote" value="yes">
+                            <label for="remotefalse">No</label>
+                            <input type="radio" id="remotefalse" name="companyremote" value="no">
+                        </div>
+                    </div>
+
+                    <label for="aboutus">Tell us something unique about your company</label>
+                    <div id="aboutus">
+                        
+                        <div class="input">
+                            <div><label for="aboutusheader" class="input-label">Header</label></div>
+                            <input type="text" id="aboutusheader" name="aboutusheader" size="40">
+                        </div>
+                        
+                        <div class="input">
+                            <div><label for="aboutusdescription" class="input-label">Description</label></div>
+                            <textarea id="aboutusdescription" name="aboutusdescription" class="form-textarea"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="submit-button createprofile-button">
+                        <button type="submit">Create Company</button>
+                    </div> 
+                </form>               
+            </div>
+        </form>
+    </div>
+</div>
+
 
 <script src="/createprofile.js"></script>

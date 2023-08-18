@@ -20,14 +20,14 @@ passport.use("local-signup", new LocalStrategy(
         const user = await knex('users').where({ username }).first();
         if (user) {
             return done(null, false, {
-                message: "Username is already taken"
+                message: "This username has already been taken"
             })
         }
 
         let emailExists = await knex('users').where({ email: req.body.email }).first();
         if (emailExists) {
             return done(null, false, {
-                message: "This email has already been used to create an account"
+                message: "This email has already been used"
             })
         }
 
@@ -54,7 +54,7 @@ passport.use("local-login",
 
             if (!user) {
                 return done(null, false, {
-                    message: "User does not exist in the database"
+                    message: "User does not exist"
                 })
             }
 

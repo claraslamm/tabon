@@ -1,37 +1,59 @@
-<h1 class="page-header">Welcome to Tabon.</h1>
-<p>Ready to apply? Say goodbye to old-fashioned job sites</p>
+<div class="logo">
+    <h1>Tabon</h1>
+    <div class="login extra">
+        <h4>Welcome to Tabon.</h4>
+        <p class="sub-text">Ready to apply? Say goodbye to old-fashioned job sites</p>
+        
+        <form action="/auth/login" method="POST" id="login-form">
+        
+            <div class="input">
+                <div>
+                    <label for="username" class="input-label">Username</label>
+                </div>
+                <input type="text" name="username" id="username" size="40">
+            </div>
+            
+            <div class="input">
+                <div class="password">
+                    <label for="password" class="input-label">Password</label>
+                    <span class="input-label forgot-password"><a href="">Forgot your password?</a></span>
+                </div>
+                <input type="password" id="password" name="password" size="40">
+            </div>
+            
+            <div class="errormessage">
+                {{#if message}}
+                    <span>{{message}}</span>
+                {{/if}}
+            </div>
+            
+            <div class="submit-button">
+                <button type="submit">Sign In</button>
+            </div>
+        
+        </form>
+        
+        <span class="or-signin-with">or sign in with</span>
 
-<form action="/auth/login" method="POST" id="login-form">
-
-<label for="username">Username</label> <br>
-<input type="text" name="username" id="username">
-
-<br>
-
-<label for="password">Password</label> <br>
-<input type="password" id="password" name="password">
-
-<br>
-<br>
-<button type="submit" id="sign-in-button">Sign in</button>
-
-</form>
-
-<p>or sign in with</p>
-<script src="https://accounts.google.com/gsi/client" async defer></script>
-<div id="g_id_onload"
-    data-client_id="766503252879-acses2et0cque9g9aik1eiioari85si6.apps.googleusercontent.com"
-    data-login_uri="/auth/google"
-    data-auto_prompt="false">
+        <div class="google-button">
+            <script src="https://accounts.google.com/gsi/client" async defer></script>
+            <div id="g_id_onload"
+                data-client_id="766503252879-acses2et0cque9g9aik1eiioari85si6.apps.googleusercontent.com"
+                data-login_uri="/auth/google"
+                data-auto_prompt="false">
+            </div>
+            <div class="g_id_signin"
+                data-type="standard"
+                data-size="large"
+                data-theme="outline"
+                data-text="sign_in_with"
+                data-shape="rectangular"
+                data-logo_alignment="left"
+                data-width="100">
+            </div>
+        </div>
+        
+        <br>
+        <p>Don't have an account? <a href="/auth/signup">Create your Tabon profile today</a></p>
+    </div>
 </div>
-<div class="g_id_signin"
-    data-type="standard"
-    data-size="large"
-    data-theme="outline"
-    data-text="sign_in_with"
-    data-shape="rectangular"
-    data-logo_alignment="left"
-    data-width="100">
-</div>
-
-<p>Don't have an account? <a href="/auth/signup">Create your Tabon profile today!</a></p>

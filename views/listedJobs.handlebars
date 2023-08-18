@@ -8,8 +8,14 @@
     <tbody>
         {{#each jobs}}
         <tr>
-            <td><a href="/jobs/listedjobs/{{this.id}}">{{this.job_title}}</a></td>
-            <td>{{this.applicant_count}}</td>
+            <td><a href="/jobs/jobdetails/{{this.id}}">{{this.job_title}}</a></td>
+            <td><a href="/jobs/listedjobs/{{this.id}}">{{this.applicant_count}}</a></td>
+        </tr>
+        {{/each}}
+        {{#each noApplicants}}
+        <tr>
+            <td><a href="/jobs/jobdetails/{{this.id}}">{{this.job_title}}</a></td>
+            <td><a href="/jobs/listedjobs/{{this.id}}">0</a></td>
         </tr>
         {{/each}}
     </tbody>

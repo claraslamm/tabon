@@ -1,0 +1,155 @@
+body {
+    background-color: #EFEFEF;
+}
+
+.logo {
+    background-color: white;
+    width: 40%;
+    margin: 3rem auto 2rem;
+    border-radius: 0.7rem;
+}
+
+.logo h1 {
+    position: relative;
+    top: 2rem;
+    left: 4rem;
+}
+
+.login {
+    margin-top: 2.5rem;
+    padding: 2rem 2rem 1rem 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.sub-text {
+    color: gray;
+    font-size: 0.8rem;
+}
+
+.input {
+    margin-bottom: 0.8rem;
+}
+
+.input-label {
+    font-size: 0.7rem;
+    color: gray;
+}
+
+.password {
+    display: flex;
+    justify-content: space-between;
+}
+
+.forgot-password a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.errormessage {
+    font-size: 1rem;
+    color: red;
+    margin-bottom: 0rem;
+}
+
+.submit-button {
+    display: flex;
+    justify-content: center;
+    background-color: #4286F5;
+    border-radius: 0.2rem;
+    width: 70%;
+    margin: 1.5rem auto 0;
+    padding: 0.15rem 0;
+}
+
+.submit-button button {
+    border: none;
+    background-color: #4286F5;
+    color: white;
+    width: 100%;
+}
+
+.or-signin-with {
+    font-size: 0.7rem;
+    color: gray;
+    margin-top: 1rem;
+    margin-bottom: 0.2rem;
+}
+
+.google-button {
+    margin-bottom: 1rem;
+}
+
+.extra {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+}
+
+.select-username {
+    margin-bottom: 1rem;
+}
+
+.create-username {
+    margin-bottom: 2rem;
+}
+
+.create-profile {
+    margin-top: 3rem;
+    padding-bottom: 3rem;
+}
+
+.select-usertype {
+    text-align: center;
+}
+
+#user_type {
+    margin: 1rem 0;
+}
+
+#userForm, #companyForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form-textarea {
+    width: 39ch;
+    height: 10rem;
+}
+
+#project {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#uploadproject {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.uploadprojectpic {
+    margin: 0.3rem 0;
+}
+
+.createprofile-button {
+    margin-top: 2rem;
+    /* overrides width of submit button class */
+    width: 50% !important; 
+}
+
+.number-input {
+    width: 21rem;
+}
+
+#companyremote {
+    display: flex;
+    justify-content: center;
+}
+
+#companyremote input {
+    margin-left: 0.5rem;
+    margin-right: 1rem;
+}
