@@ -4,7 +4,7 @@ const passport = require('passport');
 const knexfile = require('../knexfile').development;
 const knex = require('knex')(knexfile);
 
-const notLoggedIn = require('../auth/check-login').notLoggedIn;
+const notLoggedIn = require('../helpers/check-login').notLoggedIn;
 
 //signup page
 router.get('/signup', notLoggedIn, (req, res) => {

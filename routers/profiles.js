@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { isLoggedIn } = require('../auth/check-login');
+const { isLoggedIn } = require('../helpers/check-login');
 const { uploadPicture, uploadProjectPics, uploadResume, retrievePicture } = require('../helpers/upload');
 const knexfile = require("../knexfile").development;
 const knex = require("knex")(knexfile);
@@ -99,6 +99,8 @@ router.post('/edituserprofile', async (req, res) => {
     uploadPicture(req, 'profilepic', 'profilepicture', 'profilepics');
     uploadProjectPics(req);
     uploadResume(req);
+    
+    await knex('user_profiles').where({ user_id: id }).update({ hasProfilePic: "Yes" });
 
     const updateUserProfile = {
         first_name: req.body.firstname,
@@ -128,6 +130,7 @@ router.post('/editcompanyprofile', async (req, res) => {
     const id = req.user.id;
 
     uploadPicture(req, 'companylogo', 'companylogo', 'companylogos');
+    await knex('company_profiles').where({ user_id: req.user.id }).update({ hasProfilePic: "Yes" });
 
     const updateCompanyProfile = {
         company_name: req.body.companyname,

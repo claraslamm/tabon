@@ -1,20 +1,37 @@
-<h1>These are the jobs you have applied for</h1>
+<div class="job-pages">
+    
+    
+    <div class="jobs-buttons">
+        <span><a href="/jobs" class="opaque">Job Board</a></span>
+        <span><a href="/jobs/listedjobs" class="listed-jobs right">Applied Jobs</a></span>
+    </div>
 
-<table>
-    <thead>
-        <th scope="col"><strong>Job Title</strong></th>
-        <th scope="col"><strong>Company</strong></th>
-        <th scope="col"><strong>Location</strong></th>
-        <th scope="col"><strong>Status</strong></th>
-    </thead>
-    <tbody>
-        {{#each jobs}}
-        <tr>
-            <td><a href="/jobs/jobdetails/{{this.job_id}}">{{this.job_title}}</a></td>
-            <td><a href="">{{this.company_name}}</a></td>
-            <td>{{this.location}}</td>
-            <td>{{this.application_status}}</td>
-        </tr>
-        {{/each}}
-    </tbody>
-</table>
+    {{#each jobs}}
+        <div class="jobcontainer">
+            <div>
+                {{#if this.hasProfilePic}}
+                    <img src="/images/companylogos/companylogo{{this.company_id}}" class="small-logo">
+                {{else}}
+                    <img src="/images/companylogos/company-logo-default.png" class="small-logo">
+                {{/if}}
+            </div>
+
+            <div class="small-container">
+                <span class="top-text">{{this.job_title}}</span>
+                <span>{{this.company_name}}</span>
+            </div>
+            <div class="small-container">
+                <span class="top-text">{{this.location}}</span>
+                <span>Location</span>
+            </div>
+            <div class="small-container">
+                <span class="top-text">{{this.application_date}}</span>
+                <span>Application Date</span>
+            </div>
+            <div class="more-info">
+                <a href="/jobs/jobdetails/{{this.job_id}}">View Job</a>
+            </div>
+        </div>
+    {{/each}}
+    
+</div>

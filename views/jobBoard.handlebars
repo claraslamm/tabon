@@ -1,36 +1,49 @@
-<h1>This is the Job Board</h1>
-{{#if isCompany}}
-<a href="/jobs/listedjobs">Listed Jobs</a>
-{{else}}
-<a href="/jobs/appliedjobs">Jobs Applied for</a>
-{{/if}}
+<div class="job-pages">
+    
+    
+    {{#if isCompany}}
+        <div class="company-jobs-buttons">
+            <div class="jobs-buttons">
+                <span><a href="/jobs" class="listed-jobs">Job Board</a></span>
+                <span><a href="/jobs/listedjobs" class="opaque right">Listed Jobs</a></span>
+            </div>
+            <div>
+                <div id="postjob-button"><a href="/jobs/createjob">Create a Job</a></div>
+            </div>
+        </div>
+    {{else}}
+        <div class="jobs-buttons">
+            <span><a href="/jobs" class="listed-jobs">Job Board</a></span>
+            <span><a href="/jobs/appliedjobs" class="opaque right">Jobs Applied</a></span>
+        </div>
+    {{/if}}
+    
+    {{#each jobInfo}}
+        <div class="jobcontainer">
+            <div>
+                {{#if this.hasProfilePic}}
+                    <img src="/images/companylogos/companylogo{{this.company_id}}" class="small-logo">
+                {{else}}
+                    <img src="/images/companylogos/company-logo-default.png" class="small-logo">
+                {{/if}}
+            </div>
 
-<br>
-<br>
-
-{{#if isCompany}}
-<a href="/jobs/createjob">Create Job</a>
-{{/if}}
-
-<br>
-<br>
-
-<table>
-    <thead>
-        <th scope="col"><strong>Job Title</strong></th>
-        <th scope="col"><strong>Company</strong></th>
-        <th scope="col"><strong>Last Updated</strong></th>
-        <th scope="col"><strong>Status</strong></th>
-    </thead>
-
-    <tbody>
-        {{#each jobInfo}}
-            <tr>
-                <td><a href="/jobs/jobdetails/{{this.id}}">{{this.job_title}}</a></td>
-                <td>{{this.company_name}}</td>
-                <td>{{this.job_updated_date}}</td>
-                <td>{{this.job_status}}</td>
-            </tr>
-        {{/each}}
-    </tbody>
-</table>
+            <div class="small-container">
+                <span class="top-text">{{this.job_title}}</span>
+                <span>{{this.company_name}}</span>
+            </div>
+            <div class="small-container">
+                <span class="top-text">{{this.location}}</span>
+                <span>Location</span>
+            </div>
+            <div class="small-container">
+                <span class="top-text">{{this.job_updated_date}}</span>
+                <span>Job Posted</span>
+            </div>
+            <div class="more-info">
+                <a href="/jobs/jobdetails/{{this.id}}">View Job</a>
+            </div>
+        </div>
+    {{/each}}
+    
+</div>

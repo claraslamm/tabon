@@ -1,44 +1,54 @@
-<h3>List your job here:</h3>
+<div class="create">
+    <p class="post-text">Post a job now</p>
+    <p class="post-subtext">All fields must be filled</p>
 
-<p>All fields must be filled</p>
-
-<form action="/jobs/createjob" method="POST" enctype="multipart/form-data">
-    <label for="jobtitle">Job Title:</label>
-    <br>
-    <input type="text" name="jobtitle" id="jobtitle" required>
-    <br>
-
-    <label for="jobnature">What is the nature of this job? (Full-time, part-time, temp, contract etc...)</label>
-    <br>
-    <input type="text" name="jobnature" id="jobnature" required>
-    <br>
-
-    <label for="jobremote">Does this job work remotely?</label>
-    <div id="jobremote">
-        <label for="remotetrue">Yes</label>
-        <input type="radio" id="remotetrue" name="jobremote" value="yes">
-        <label for="remotefalse">No</label>
-        <input type="radio" id="remotefalse" name="jobremote" value="no">
-    </div>
-
-    <label for="location">Where is this job located?</label>
-    <br>
-    <input type="text" name="location" id="location" required>
-    <br>
-
-    <label for="jobsummary">Write a short summary for the job:</label>
-    <br>
-    <textarea id="jobsummary" name="jobsummary" required></textarea>
-    <br>
-
-    <label for="jobdescription">Give a detailed job description below:</label>
-    <br>
-    <textarea id="jobdescription" name="jobdescription" required></textarea>
-    <br>
-
-    <label for="jobpic">Upload a picture to market your job</label>
-    <input type="file" name="jobpic" accept="image/png, image/jpeg">
-    <br>
+    <form action="/jobs/createjob" method="POST" enctype="multipart/form-data">
+            <div class="post-question">
+                <div><label for="jobtitle" class="post-form-label">Job Title<span class="asterisk">*</span></label></div>
+                <input type="text" name="jobtitle" id="jobtitle" required>
+            </div>
     
-    <button type="submit">Create Job</button>
-</form>
+            <div class="post-question">
+                <div><label for="jobnature" class="post-form-label">Job Type<span class="asterisk">*</span></label></div>
+                <select id="jobnature" name="jobnature" required>
+                    <option value = "Full-time">Full-time</option>
+                    <option value = "Part-time">Part-time</option>
+                    <option value = "Temporary">Temporary</option>
+                    <option value = "Contract">Contract</option>
+                    <option value = "Internship">Internship</option>
+                </select>
+            </div>
+
+            <div class="post-question">
+                <div><label for="jobremote" class="post-form-label">Workplace Type<span class="asterisk">*</span></label></div>
+                <select id="jobremote" name="jobremote" required>
+                    <option value = "On-site">On-site</option>
+                    <option value = "Remote">Remote</option>
+                    <option value = "Hybrid">Hybrid</option>
+                </select>
+            </div>
+
+            <div class="post-question">
+                <div><label for="location" class="post-form-label">Job Location<span class="asterisk">*</span></label></div>
+                <input type="text" name="location" id="location" required>
+            </div>
+
+                    
+            <div class="post-question">
+                <div><label for="jobsummary" class="post-form-label">Write a short summary for the job<span class="asterisk">*</span></label></div>
+                <textarea id="jobsummary" name="jobsummary" required></textarea>
+            </div>
+
+            <div class="post-question">
+                <div><label for="jobdescription" class="post-form-label">Give a detailed job description below<span class="asterisk">*</span></label></div>
+                <textarea id="jobdescription" name="jobdescription" required></textarea>
+            </div>
+
+            <div class="post-question">
+                <div><label for="jobpic" class="post-form-label">Upload a picture to market your job</label></div>
+                <input type="file" name="jobpic" accept="image/png, image/jpeg">
+            </div>
+
+            <button type="submit" class="submit">Save</button>
+    </form>
+</div>
