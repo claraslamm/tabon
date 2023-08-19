@@ -3,6 +3,11 @@ const { retrievePicture } = require("../helpers/upload");
 const knexfile = require("../knexfile").development;
 const knex = require("knex")(knexfile);
 
+const express = require('express');
+const app = express();
+
+app.use('/public', express.static(__dirname + '/public', { type: 'text/css' }));
+
 router.get('/', async (req, res) => {
 
     const jobListings = await knex('job_listings')
