@@ -50,6 +50,7 @@ app.use( async (req, res, next) => {
     
     user_id = req.user ? req.user.id : null;
     res.locals.userProfiles = await knex('user_profiles').where({ user_id: user_id }).first();
+    res.locals.companyProfiles = await knex('company_profiles').where({ user_id: user_id }).first();
     next();
 });
 
