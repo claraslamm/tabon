@@ -14,6 +14,7 @@ exports.up = function(knex) {
         table.string('about_us_description');
         table.integer('user_id').notNullable().unique();
         table.foreign('user_id').references('users.id');
+        table.string('hasProfilePic');
   })
 };
 

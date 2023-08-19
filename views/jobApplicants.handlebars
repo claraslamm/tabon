@@ -1,32 +1,54 @@
-{{#each applicants}}
-    {{#if @first}}
-        <h1>{{job_title}}</h1>
-    {{/if}}
-{{/each}}
+<div class="job-pages">
+    {{#each applicants}}
+        {{#if @first}}
+            <span class="job-title">{{job_title}}</span>
+        {{/if}}
+    {{/each}}
 
-<table>
-    <thead>
-        <th scope="col"><strong>Applicant Name</strong></th>
-        <th scope="col"><strong>Applied On</strong></th>
-        <th scope="col"><strong>Email</strong></th>
-        <th scope="col"><strong>Status</strong></th>
-    </thead>
-    <tbody>
-        {{#each applicants}}
-        <tr>
-            <td><a href="/profile/user/{{this.username}}">{{this.first_name}} {{this.last_name}}</a></td>
-            <td>{{this.application_date}}</td>
-            <td>
-                <a href="mailto:{{this.email}}?subject=Interview%20for%20{{this.job_title}}&body=Dear%20{{this.first_name}},"><button>Email</button></a>
-            </td>
-            <td>
-                {{#if (eq this.application_status "Rejected")}}
-                <span>Rejected</span>
+    <div class="company-jobs-buttons">
+        <div class="jobs-buttons">
+            <span><a href="/jobs" class="opaque">Job Board</a></span>
+            <span><a href="/jobs/listedjobs" class="opaque right">Listed Jobs</a></span>
+            <span class="listed-jobs right">
+                {{#each applicants}}
+                    {{#if @first}}
+                        <span>{{job_title}}</span>
+                    {{/if}}
+                {{/each}}
+            </span>
+        </div>
+    </div>
+
+    {{#each applicants}}
+
+        <div class="jobcontainer">
+            <div>
+                {{#if this.hasProfilePic}}
+                    <img src="/images/profilepics/profilepicture{{this.user_id}}" class="small-logo">
                 {{else}}
-                <form action="/jobs/rejectapplicant/{{this.job_id}}/{{this.user_id}}" method="POST" class="reject-form"><button type="submit">Reject</button></form>
+                    <img src="/images/profilepics/default-profile-pic.jpg" class="small-logo">
                 {{/if}}
-            </td>
-        </tr>
-        {{/each}}
-    </tbody>
-</table>
+            </div>
+
+            <div class="small-container">
+                <span class="top-text">{{this.first_name}} {{this.last_name}}</span>
+                <span>Applicant</span>
+            </div>
+            <div class="small-container">
+                <span class="top-text">{{this.application_date}}</span>
+                <span>Application Date</span>
+            </div>            
+            <div class="more-info">
+                <a href="mailto:{{this.email}}?subject=Interview%20for%20{{this.job_title}}&body=Dear%20{{this.first_name}},">Email</a>
+            </div>
+
+            <div>
+                {{#if (eq this.application_status "Rejected")}}
+                    <span id="rejected">Rejected</span>
+                {{else}}
+                    <form action="/jobs/rejectapplicant/{{this.job_id}}/{{this.user_id}}" method="POST" class="more-info"><button type="submit" id="rejectbutton">Reject</button></form>
+                {{/if}}                
+            </div>
+        </div>
+    {{/each}}
+</div>

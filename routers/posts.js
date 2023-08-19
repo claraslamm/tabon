@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { isLoggedIn } = require('../auth/check-login');
+const { isLoggedIn } = require('../helpers/check-login');
 const { uploadPicture, retrievePicture } = require('../helpers/upload');
 const knexfile = require("../knexfile").development;
 const knex = require("knex")(knexfile);
