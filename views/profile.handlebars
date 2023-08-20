@@ -1,12 +1,4 @@
-{{#if isUser}}
-<button class="edit-btn"><a href="/profile/edituserprofile">Edit Profile</a></button>
-<br>
-<button class="post-btn"><a href="/posts/createpost">Create Post</a></button>
-<br><br>
-{{/if}}
-
 <div class="profile">
-
   {{#each profilePicPath}}
   {{#if this}}
   <img src="{{this}}" alt="Profile Picture" class="profilepicture">
@@ -15,27 +7,36 @@
   {{/if}}
   {{/each}}
 
-  <h1>{{userInfo.first_name}} {{userInfo.last_name}}</h1>
-  <h2>{{userInfo.username}}</h2>
-  <h2>{{userInfo.email}}</h2>
+  <h1 class="fullName">{{userInfo.first_name}} {{userInfo.last_name}}</h1>
+  <h2 class="userName">{{userInfo.username}}</h2>
+  <h2 class="email">{{userInfo.email}}</h2>
 
-  <h2>About</h2>
-  <p>{{userInfo.about_section}}</p>
+    {{#if isUser}}
+<button class="edit-btn"><a href="/profile/edituserprofile">Edit Profile</a></button>
+<br>
+<button class="post-btn"><a href="/posts/createpost">Create Post</a></button>
+<br><br>
+{{/if}}
 
-  <h2>Project</h2>
-  <p>{{userInfo.project_name}}</p>
-  <p>{{userInfo.project_description}}</p>
+  <h2 class="about">About</h2>
+  <p class="description">{{userInfo.about_section}}</p>
+
+
+  <h2 class="project">Project</h2>
+  <p class="description">{{userInfo.project_name}}</p>
+  <p class="description">{{userInfo.project_description}}</p>
   
+
   {{#each imagePaths}}
     {{#if this}}
     <img src="{{this}}" alt="Project Picture{{@index}}">
     {{/if}}
   {{/each}}
 
-  <p>{{userInfo.project_post_date}}</p>
+  <p class="description">{{userInfo.project_post_date}}</p>
 
-  <p>Click below to view resume</p>
+  <p class="description">Click below to view resume</p>
   <a href="/profile/resume/{{userInfo.user_id}}">
-    <img src="/images/cvthumbnail.png" alt="Resume Thumbnail">
+    <img class="resume-pic"src="/images/cvthumbnail.png" alt="Resume Thumbnail">
   </a>
 </div>
