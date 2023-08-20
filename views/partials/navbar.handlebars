@@ -19,32 +19,64 @@
     <a href="/auth/login">Login</a>
 </nav>
 {{/if}} --}}
-<html>
-<body>
-<h2 class="logo"><a href="/"></a>Tabon</h2>
+
+
+<h2 class="logo"><a href="/">Tabon</a></h2>
 
 <div class="action">
 
-<div class="profile" onclick="menuToggle();">
-<img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2380&q=80">
-</div>
+    <div class="profile" onclick="menuToggle();">
+        {{#if userProfiles}}
+            {{#if userProfiles.hasProfilePic}}
+                <img src="/images/profilepics/profilepicture{{userProfiles.user_id}}">
+            {{else}}
+                <img src="/images/profilepics/default-profile-pic.jpg">
+            {{/if}}
+        {{else if companyProfiles}}
+            {{#if companyProfiles.hasProfilePic}}
+                <img src="/images/companylogos/companylogo{{companyProfiles.user_id}}">
+            {{else}}
+                <img src="/images/companylogos/company-logo-default.png">
+            {{/if}}
+        {{else}}
+                <img src="/images/profilepics/default-profile-pic.jpg">
+        {{/if}}
+    </div>
 
-<div class="menu">
-  
-    <h3>Tommy Bruise<br><span>tombruise@gmail.com</h3>
-    <ul>
-       <li>Profile</li><a href="#"></a> 
-       <li>Edit Profile</li><a href="#"></a> 
-       <li>Job Board</li><a href="#"></a> 
-       <li>Log out</li><a href="#"></a> 
-         </ul>
-</div>
+    <div class="menu">
+    
+        <h3>
+            {{#if userProfiles}}
+                {{userProfiles.first_name}} {{userProfiles.last_name}}
+            {{else if companyProfiles}}
+                {{companyProfiles.company_name}}
+            {{else}}
+                Guest
+            {{/if}}
+            <br>
+            <span>{{user.email}}<span>
+        </h3>
+
+        <ul>
+            {{#if userProfiles}}
+                <li><a href="/profile/user/{{user.username}}">Profile</a></li>
+                <li><a href="/profile/edituserprofile">Edit Profile</a></li> 
+            {{/if}}
+            
+            {{#if companyProfiles}}
+                <li><a href="/profile/company/{{user.username}}">Profile</a></li>
+                <li><a href="/profile/editcompanyprofile">Edit Profile</a></li> 
+            {{/if}}
+            <li><a href="/jobs">Job Board</a></li> 
+            <li><a href="/auth/logout">Log out</a></li>
+        </ul>
+    </div>
 </div>
 <script>
+
     function menuToggle() {
         const toggleMenu = document.querySelector('.menu');
         toggleMenu.classList.toggle('active')
     }
+
 </script>
-</body>
-</html> 
