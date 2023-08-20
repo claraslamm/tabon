@@ -46,8 +46,12 @@
                 <li><a href="/profile/company/{{user.username}}">Profile</a></li>
                 <li><a href="/profile/editcompanyprofile">Edit Profile</a></li> 
             {{/if}}
-            <li><a href="/jobs">Job Board</a></li> 
-            <li><a href="/auth/logout">Log out</a></li>
+            <li><a href="/jobs">Job Board</a></li>
+            {{#if user}}
+                <li><a href="/auth/logout">Log out</a></li>
+            {{else}}
+                <li><a href="/auth/login">Log in</a></li>
+            {{/if}}
         </ul>
     </div>
 </div>
