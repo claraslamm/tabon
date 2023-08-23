@@ -1,6 +1,14 @@
 //express
 const express = require('express')
 const app = express();
+const https = require('https');
+const fs = require('fs');
+
+//options for https
+const options = {
+    cert: fs.readFileSync('./localhost.crt'),
+    key: fs.readFileSync('./localhost.key'),
+}
 
 //handlebars
 const { engine } = require('express-handlebars');
@@ -71,6 +79,10 @@ const postRoutes = require('./routers/posts');
 app.use('/posts', postRoutes);
 
 //server is listening
-app.listen(8000, () => {
+// app.listen(8000, () => {
+//     console.log('Server is listening');
+// })
+
+https.createServer(options, app).listen(8000, () => {
     console.log('Server is listening');
-})
+});
