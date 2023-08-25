@@ -4,31 +4,31 @@
 
   <label for="profilepic">Upload your profile picture</label>
   <br>
+ 
   <input type="file" id="profilepic" name="profilepic">
   <br>
   <button type="submit">Upload</button>
   <br>
 
-  <label for="firstname">First Name</label>
+  <label class="labelname" for="firstname">First Name</label>
   <input type="text" id="firstname" name="firstname" value="{{userInfo.first_name}}">
   <br>
 
-  <label for="lastname">Last Name</label>
+  <label class="labelname" for="lastname">Last Name</label>
   <input type="text" id="lastname" name="lastname" value="{{userInfo.last_name}}">
   <br>
 
-  <label for="aboutme">About Me</label>
+  <label class="labelname" for="aboutme">About Me</label>
   <textarea id="aboutme" name="aboutme">{{userInfo.about_section}}</textarea>
   <br>
 
-  <label for="project">Project</label>
-  <br>
+  {{!-- <label for="project">Project</label> --}}
   <div id="project">
-    <label for="projectheader">Your project's name</label>
+    <label class="projectlabel1" for="projectheader">Your project's name</label>
     <input type="text" id="projectheader" name="projectheader" value="{{projectInfo.project_name}}">
     <br>
 
-    <label for="projectdescription">Tell us more about your project</label>
+    <label class="projectlabel2" for="projectdescription">Tell us more about your project</label>
     <textarea name="projectdescription" id="projectdescription">{{projectInfo.project_description}}</textarea>
     <br>
 
@@ -41,7 +41,7 @@
   </div>
 
 
-  <label for="uploadresume">Upload your resume</label>
+  <label for="uploadresumes">Upload your resume</label>
   <br>
   <input type="file" id="uploadresume" name="uploadresume" accept=".doc,.docx,.xml,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document">
 

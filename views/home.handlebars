@@ -1,5 +1,41 @@
 <h1>Home Page</h1>
 
+<p>Just a test 2</p>
+{{!-- <div class="container">
+    <div class="row">
+        {{#each sortedPosts}}
+            <div class="col-3">
+                {{#if this.job_id}}
+
+                    <div class="card" style="width: 18rem;">
+                        <img src="/images/jobpics/jobpicture{{this.user_id}}{{this.job_id}}" class="card-img-top" alt="Job picture">
+                        <div class="card-body">
+                            <h6 class="card-title">{{this.name}}</h6>
+                            <h4 class="card-title"> {{this.job_title}}</h4>
+                            <p class="card-text">{{this.job_summary}}</p>
+                            <a href="/jobs/jobdetails/{{this.job_id}}" class="btn btn-primary">Apply</a>
+                        </div>
+                    </div>
+
+                {{else}}
+
+                    <div class="card" style="width: 18rem;">
+                        <img src="/images/postpics/postpicture{{this.user_id}}{{this.post_id}}" class="card-img-top" alt="Post picture">
+                        <div class="card-body">
+                            <h6 class="card-title">{{this.name}} {{this.last_name}}</h6>
+                            <h4 class="card-title"> {{this.job_title}}</h4>
+                            <p class="card-text">{{this.job_summary}}</p>
+                            <a href="/posts/postdetails/{{this.post_id}}" class="btn btn-primary">Find Out More</a>
+                        </div>
+                    </div>
+
+                {{/if}}
+            </div>
+        {{/each}}
+        
+    </div>
+</div> --}}
+
 <div class="d-flex flex-row flex-wrap">
 {{#each sortedPosts}}
         {{#if this.job_id}}
@@ -28,4 +64,5 @@
 
         {{/if}}
 {{/each}}
+
 </div>
