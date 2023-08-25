@@ -5,10 +5,10 @@ const https = require('https');
 const fs = require('fs');
 
 // options for https
-const options = {
-    cert: fs.readFileSync('./localhost.crt'),
-    key: fs.readFileSync('./localhost.key'),
-}
+// const options = {
+//     cert: fs.readFileSync('./localhost.crt'),
+//     key: fs.readFileSync('./localhost.key'),
+// }
 
 // const options = {
 //     cert: fs.readFileSync('/etc/letsencrypt/live/tabon.co.uk/fullchain.pem'),
@@ -83,11 +83,11 @@ app.use('/jobs', jobRoutes);
 const postRoutes = require('./routers/posts');
 app.use('/posts', postRoutes);
 
-//server is listening
-// app.listen(8000, () => {
-//     console.log('Server is listening');
-// })
-
-https.createServer(options, app).listen(8000, () => {
+// server is listening
+app.listen(8000, () => {
     console.log('Server is listening');
-});
+})
+
+// https.createServer(options, app).listen(8000, () => {
+//     console.log('Server is listening');
+// });
