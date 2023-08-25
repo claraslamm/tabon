@@ -79,10 +79,10 @@ const postRoutes = require('./routers/posts');
 app.use('/posts', postRoutes);
 
 //server is listening
-// app.listen(8000, () => {
-//     console.log('Server is listening');
-// })
-
-https.createServer(options, app).listen(8000, () => {
+app.listen(8000, () => {
     console.log('Server is listening');
-});
+})
+
+// https.createServer(options, app).listen(8000, () => {
+//     console.log('Server is listening');
+// });
