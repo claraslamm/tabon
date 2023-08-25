@@ -4,16 +4,16 @@ const app = express();
 const https = require('https');
 const fs = require('fs');
 
-//options for https
-// const options = {
-//     cert: fs.readFileSync('./localhost.crt'),
-//     key: fs.readFileSync('./localhost.key'),
-// }
-
+// options for https
 const options = {
-    cert: fs.readFileSync('/etc/letsencrypt/live/tabon.co.uk/fullchain.pem'),
-    key: fs.readFileSync('/etc/letsencrypt/live/tabon.co.uk/privkey.pem'),    
+    cert: fs.readFileSync('./localhost.crt'),
+    key: fs.readFileSync('./localhost.key'),
 }
+
+// const options = {
+//     cert: fs.readFileSync('/etc/letsencrypt/live/tabon.co.uk/fullchain.pem'),
+//     key: fs.readFileSync('/etc/letsencrypt/live/tabon.co.uk/privkey.pem'),    
+// }
 
 //handlebars
 const { engine } = require('express-handlebars');
