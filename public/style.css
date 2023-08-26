@@ -436,3 +436,58 @@ button[type="submit"]:hover {
 #uploadresume {
   margin-left: 150px;
 }
+
+.companypara {
+  margin-left: 100px;
+  font-size: 16px;
+  line-height: 1;
+}
+
+.companytitle {
+  margin-left: 100px;
+  font-size: 16px;
+  line-height: 1;
+  font-weight: 500;
+}
+.companyabout {
+  margin-left: 100px;
+  margin-top:50px;
+  font-size: 23px;
+}
+
+.openroletitle {
+  margin-left: 100px;
+  font-size: 19px;
+  line-height: 1;
+  font-weight: 500;
+  margin-top: 60px;
+}
+
+.openrolepara {
+  font-size: 16px;
+  line-height: 0.5;
+  margin-top: 20px;
+  font-weight: 400;
+}
+
+
+.openrolebtn {
+  font-size: 13px;
+  line-height: 0.5;
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 30px;
+  border-radius: 15px;
+  border: black 1px solid;
+  background-color: white;
+  font-weight: 600;
+  padding: 6px 20px;
+  padding-top: 12px;
+  padding-bottom: 12px;
+
+}
+
+.openrolebtn:hover {
+  background-color: #333;
+  color: white;
+}

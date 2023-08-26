@@ -1,8 +1,3 @@
-{{#if isCompany}}
-<button class="edit-btn"><a href="/profile/editcompanyprofile">Edit Profile</a></button>
-<br>
-{{/if}}
-
 {{#each logoPath}}
 {{#if this}}
 <img src="{{this}}" alt="Company Logo" class="profilepicture">
@@ -11,16 +6,23 @@
 {{/if}}
 {{/each}}
 
-<p>{{companyInfo.company_name}}</p>
-<p>{{companyInfo.company_website}}</p>
-<p>Employees: {{companyInfo.headcount}}</p>
-<p>Remote: {{companyInfo.company_remote}}</p>
+<p class="companytitle">{{companyInfo.company_name}}</p>
+<p class="companypara">{{companyInfo.company_website}}</p>
+<p class="companypara">Employees: {{companyInfo.headcount}}</p>
+<p class="companypara">Remote: {{companyInfo.company_remote}}</p>
 
-<h2>About</h2>
-<p>{{companyInfo.company_description}}</p>
+{{#if isCompany}}
+<button class="edit-btn"><a href="/profile/editcompanyprofile">Edit Profile</a></button>
+<br>
+{{/if}}
 
+<h2 class="companyabout">About</h2>
+<p class="companypara">{{companyInfo.company_description}}</p>
+
+<div class="openroletitle">Open Roles
 {{#each companyJobs}}
-<p>{{this.job_title}}</p>
-<p>{{this.location}}</p>
-<a href="/jobs/jobdetails/{{this.job_id}}"><button>View Role</button></a>
+<p class="openrolepara">{{this.job_title}}</p>
+<p class="openrolepara">{{this.location}}</p>
+<a href="/jobs/jobdetails/{{this.job_id}}"><button class="openrolebtn">View Role</button></a>
 {{/each}}
+</div>
