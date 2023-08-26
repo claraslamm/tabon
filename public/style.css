@@ -491,3 +491,17 @@ button[type="submit"]:hover {
   background-color: #333;
   color: white;
 }
+
+.jobtitle {
+  font-size: 20px;
+  margin-top: 80px;
+}
+
+.jobdetails {
+  text-align: center;
+}
+
+.jobabout {
+  margin-top: 20px;
+  line-height: 2;
+}
