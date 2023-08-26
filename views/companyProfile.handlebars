@@ -1,38 +1,50 @@
 <div class="pagecontainer">
-  <div class="openroletitle">
-    <div>
+  <div class="companyrow">
+    <div class="companyinfo">
       {{#each logoPath}}
-      {{#if this}}
-      <img src="{{this}}" alt="Company Logo" class="profilepicture">
-      {{else}}
-      <img src="/images/companylogos/company-logo-default.png" class="profilepicture" alt="Profile Picture">
-      {{/if}}
+        {{#if this}}
+          <img src="{{this}}" alt="Company Logo" class="profilepicture">
+        {{else}}
+          <img src="/images/companylogos/company-logo-default.png" class="profilepicture" alt="Profile Picture">
+        {{/if}}
       {{/each}}
-    
       <p class="companytitle">{{companyInfo.company_name}}</p>
       <p class="companypara">{{companyInfo.company_website}}</p>
-      <p class="companypara">Employees: {{companyInfo.headcount}}</p>
-      <p class="companypara">Remote: {{companyInfo.company_remote}}</p>
-    
+      <div>
+        <span class="companybuttons">{{companyInfo.headcount}} members</span>
+        <span class="companybuttons">Remote {{companyInfo.company_remote}}</span>
+      </div>
       {{#if isCompany}}
-      <button class="edit-btn"><a href="/profile/editcompanyprofile">Edit Profile</a></button>
-      <br>
+        <button class="edit-btn"><a href="/profile/editcompanyprofile">Edit Profile</a></button>
       {{/if}}
     </div>
-    
+
     <div class="aboutcompany">
       <h2 class="companyabout">About</h2>
       <p class="companypara">{{companyInfo.company_description}}</p>
     </div>
-  
-  {{!-- <div class="openroletitle"> --}}
-    {{#each companyJobs}}
-      <div class="openroles">
-        <p class="openrolepara">{{this.job_title}}</p>
-        <p class="openrolepara">{{this.location}}</p>
+
+    <div></div>
+  </div>
+
+  <div class="companyrow">
+    <div><span>Open roles</span></div>
+    <div class="companyjobs">
+      {{#each companyJobs}}
+      <div class="individualjob">
+        <p class="openroletitle">{{this.job_title}}</p>
+        <p class="openrolepara">{{this.job_summary}}</p>
         <a href="/jobs/jobdetails/{{this.job_id}}"><button class="openrolebtn">View Role</button></a>
       </div>
-    {{/each}}
+      {{/each}}
+    </div>
+  </div>
+
+  <div class="companyrow">
+    <div><span>{{companyInfo.about_us_heading}}</span></div>
+    <div class="companydescription">
+      <p>{{companyInfo.about_us_description}}</p>
+    </div>
   </div>
 </div>
 

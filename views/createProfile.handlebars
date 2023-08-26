@@ -21,12 +21,12 @@
                         <div>
                             <label for="firstname" class="input-label">First Name</label>
                         </div>
-                        <input type="text" id="firstname" name="firstname" size="40" required>
+                        <input type="text" id="firstname" name="firstname" required>
                     </div>
             
                     <div class="input">
                         <div><label for="lastname" class="input-label">Last Name</label></div>
-                        <input type="text" id="lastname" name="lastname" size="40" required>
+                        <input type="text" id="lastname" name="lastname" required>
                     </div>
             
                     <div class="input">
@@ -39,7 +39,7 @@
 
                         <div class="input">
                             <div><label for="projectheader" class="input-label">Name</label></div>
-                            <input type="text" id="projectheader" name="projectheader" size="40" required>
+                            <input type="text" id="projectheader" name="projectheader" required>
                         </div>
 
             
@@ -67,7 +67,7 @@
 
                     <div class="input">
                         <div><label for="companyname" class="input-label">Company Name</label></div>
-                        <input type="text" id="companyname" name="companyname" size="40" required>
+                        <input type="text" id="companyname" name="companyname" required>
                     </div>
             
                     <div class="input">
@@ -77,22 +77,22 @@
             
                     <div class="input">
                         <div><label for ="companywebsite" class="input-label">Company Website</label></div>
-                        <input type="text" id="companywebsite" name="companywebsite" size="40" required>
+                        <input type="text" id="companywebsite" name="companywebsite" required>
                     </div>
             
                     <div class="input">
                         <div><label for="headcount" class="input-label">Number of Employees</label></div>
-                        <input type="number" id="headcount" name="headcount" size="40"  class="number-input" required>
+                        <input type="number" id="headcount" name="headcount" class="number-input" required>
                     </div>
-            
+
                     <div class="input">
-                        <label for="companyremote">Does your company offer remote work?</label>
-                        <div id="companyremote">
-                            <label for="remotetrue">Yes</label>
-                            <input type="radio" id="remotetrue" name="companyremote" value="yes">
-                            <label for="remotefalse">No</label>
-                            <input type="radio" id="remotefalse" name="companyremote" value="no">
-                        </div>
+                        <div><label for="companyremote" class="input-label">Workplace Type</label></div>
+                        <select id="companyremote" name="companyremote" required>
+                            <option disabled selected value> Select an Option </option>
+                            <option value = "On-site">On-site</option>
+                            <option value = "Remote">Remote</option>
+                            <option value = "Hybrid">Hybrid</option>
+                        </select>
                     </div>
 
                     <label for="aboutus">Tell us something unique about your company</label>
@@ -100,7 +100,7 @@
                         
                         <div class="input">
                             <div><label for="aboutusheader" class="input-label">Header</label></div>
-                            <input type="text" id="aboutusheader" name="aboutusheader" size="40">
+                            <input type="text" id="aboutusheader" name="aboutusheader">
                         </div>
                         
                         <div class="input">

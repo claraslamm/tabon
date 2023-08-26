@@ -15,12 +15,12 @@
 
         {{else}}
 
-            <div class="card" style="width: 18rem;">
+            <div class="card m-2" style="width: 18rem;">
                 <img src="/images/postpics/postpicture{{this.user_id}}{{this.post_id}}" class="card-img-top" alt="Post picture">
                 <div class="card-body">
                     <h6 class="card-title">{{this.name}} {{this.last_name}}</h6>
-                    <h4 class="card-title"> {{this.job_title}}</h4>
-                    <p class="card-text">{{this.job_summary}}</p>
+                    <h4 class="card-title job-title"> {{this.job_title}}</h4>
+                    <p class="card-text jobinfo">{{this.job_summary}}</p>
                     <a href="/posts/postdetails/{{this.post_id}}" class="btn btn-primary">Find Out More</a>
                 </div>
             </div>

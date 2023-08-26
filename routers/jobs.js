@@ -131,7 +131,7 @@ router.get("/listedjobs", isLoggedIn, async (req, res) => {
             .leftJoin("job_applications", "job_listings.id", "=", "job_applications.job_id")
             .join("company_profiles", "job_listings.company_id", "=", "company_profiles.user_id")
             .where({ "job_listings.company_id": id, user_profile_id: null })
-            .select("job_listings.id", "job_listings.job_title", "job_listings.company_id", "company_profiles.company_name", "job_listings.location");
+            .select("job_listings.id", "job_listings.job_title", "job_listings.company_id", "company_profiles.company_name", "job_listings.location", "company_profiles.hasProfilePic");
         
         res.render("listedjobs", { jobs, noApplicants });
     } else {

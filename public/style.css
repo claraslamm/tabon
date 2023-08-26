@@ -1,155 +1,3 @@
-
-.job-pages {
-    width: 80%;
-    margin: 5rem auto 0;
-}
-
-.company-jobs-buttons {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 3rem;
-}
-
-.jobs-buttons {
-    display: flex;
-    justify-content: start;
-    margin-bottom: 3rem;
-}
-
-.listed-jobs {
-    text-decoration: none;
-    color: black;
-    font-weight: 600;
-    font-size: 1.3rem;
-}
-
-.opaque {
-    text-decoration: none;
-    color: #A5A5A5;
-    font-weight: 600;
-    font-size: 1.3rem;
-}
-
-.right {
-    margin-left: 3rem;
-}
-
-#postjob-button a {
-    text-decoration: none;
-    color: white;
-    background-color: black;
-    border-radius: 0.3rem;
-    padding: 0.4rem 1.5rem;
-}
-
-.jobcontainer {
-    border: 1px solid black;
-    border-radius: 1rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 1.5rem 0;
-    padding: 1.7rem;
-}
-
-.small-logo {
-    height: 4rem;
-    width: 4rem;
-}
-
-.small-container {
-    display: flex;
-    flex-direction: column;
-    width: 15rem;
-}
-
-.top-text {
-    font-weight: 700;
-    margin-bottom: 0.7rem;
-}
-
-.more-info a {
-    text-decoration: none;
-    color: black;
-    border: 1px solid black;
-    border-radius: 0.4rem;
-    padding: 0.4rem 1rem;
-    margin-right: 6rem;
-}
-
-.create {
-    width: 80%;
-    margin: 5rem auto 0;
-}
-
-.post-text {
-    font-size: 1.3rem;
-    font-weight: 700;
-    margin: 0;
-}
-
-.post-subtext {
-    font-size: 0.8rem;
-    color: gray;
-    margin-bottom: 1.5rem;
-}
-
-.post-question {
-    margin: 1rem 0;
-}
-
-.post-form-label {
-    font-size: 1.1rem;
-    font-weight: 600;
-    margin-bottom: 0.3rem;
-}
-
-.asterisk {
-    color: red;
-}
-
-.post-question input {
-    border-radius: 0.3rem;
-    width: 80ch;
-    /* input border seems bolder when adding border-radius
-    border: 0.2px solid black; */
-}
-.post-question select {
-    width: 80ch;
-    height: 2rem;
-    border-radius: 0.3rem;
-}
-
-.post-question textarea {
-    width: 80ch;
-    height: 10rem;
-    border-radius: 0.3rem;
-}
-
-.submit {
-    border-radius: 0.5rem;
-    background: #4286F5;
-    border: none;
-    padding: 0.1rem 1.3rem;
-    color: white;
-    margin: 1rem 0;
-}
-
-#rejectbutton {
-    background: lightcoral;
-    /* border: 1px solid black; */
-    border-radius: 0.4rem;
-    padding: 0.4rem 1rem;
-    margin-right: 6rem;
-    color: white;
-}
-
-#rejected {
-    color: red;
-    padding: 0.4rem 1rem;
-    margin-right: 5.4rem;
-}
-
 * {
   margin: 0;
   padding: 0;
@@ -437,9 +285,42 @@ button[type="submit"]:hover {
   margin-left: 150px;
 }
 
+.companyrow {
+  display: flex;
+  margin: 50px 0;
+}
+
+.companyinfo {
+  width: 70%;
+}
+.aboutcompany {
+  margin-left: 16.5%;
+}
+
+.companybuttons {
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 5px;
+  margin-right: 5px;
+}
+
+.companyjobs {
+  margin-left: 5%;
+  display: flex;
+  flex-wrap: wrap;
+  /* border: 1px solid red; */
+  width: 100%;
+}
+
+.individualjob {
+  width: 30%;
+  margin-right: 16%
+}
+
 .companypara {
   font-size: 16px;
   line-height: 1;
+  margin-top: 30px;
 }
 
 .companytitle {
@@ -452,7 +333,7 @@ button[type="submit"]:hover {
   font-size: 23px;
 }
 
-.openroletitle {
+/* .openroletitle {
   font-size: 19px;
   line-height: 1;
   font-weight: 500;
@@ -460,17 +341,22 @@ button[type="submit"]:hover {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-}
+} */
 
-.openroles {
+/* .openroles {
   margin: 10px;
   width: 40%;
   text-align: center;
+} */
+
+.openroletitle {
+  font-size: 16px;
+  font-weight: 500;
 }
 
 .openrolepara {
   font-size: 16px;
-  line-height: 0.5;
+  /* line-height: 0.5; */
   margin-top: 20px;
   font-weight: 400;
 }
@@ -509,6 +395,10 @@ button[type="submit"]:hover {
 .jobabout {
   margin-top: 20px;
   line-height: 2;
+}
+
+.companydescription {
+  margin-left: 5%;
 }
 
 #companylogo{
