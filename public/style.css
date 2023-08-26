@@ -172,6 +172,7 @@
 
 .action {
   position: fixed;
+  z-index: 9999;
   top: 30px;
   right: 40px;
 }
@@ -261,7 +262,7 @@
 
 .profilepicture {
   margin-top: 8%;
-  margin-left: 5%;
+  /* margin-left: 5%; */
   margin-bottom: 2%;
   position: relative;
   width: 150px;
@@ -303,7 +304,6 @@
   background-color: white;
   font-weight: 600;
   padding: 6px 20px;
-  margin-left: 90px;
   margin-top: 8px;
  }
 
@@ -352,7 +352,7 @@ label {
 }
 
 #profilepic {
-  margin-left: 150px;
+    margin-left: 150px;
 }
 /* Style the file input */
 input[type="file"] {
@@ -438,29 +438,34 @@ button[type="submit"]:hover {
 }
 
 .companypara {
-  margin-left: 100px;
   font-size: 16px;
   line-height: 1;
 }
 
 .companytitle {
-  margin-left: 100px;
   font-size: 16px;
   line-height: 1;
   font-weight: 500;
 }
 .companyabout {
-  margin-left: 100px;
   margin-top:50px;
   font-size: 23px;
 }
 
 .openroletitle {
-  margin-left: 100px;
   font-size: 19px;
   line-height: 1;
   font-weight: 500;
   margin-top: 60px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.openroles {
+  margin: 10px;
+  width: 40%;
+  text-align: center;
 }
 
 .openrolepara {
@@ -504,4 +509,33 @@ button[type="submit"]:hover {
 .jobabout {
   margin-top: 20px;
   line-height: 2;
+}
+
+#companylogo{
+  margin-left: 30px;
+}
+
+.home {
+  margin: 0 auto;
+  max-width: 85.5%;
+}
+
+.card-title {
+  margin: 0px;
+}
+
+.job-title {
+  font-size: 16px;
+  margin-top: 8px;
+  margin-bottom: 10px;
+}
+
+.jobinfo {
+  height: 100px;
+  overflow: hidden;
+}
+
+.pagecontainer {
+  width: 80%;
+  margin: 0 auto;
 }
