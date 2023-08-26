@@ -1,4 +1,6 @@
-<h1>{{jobInfo.job_title}} -- {{jobInfo.company_name}}</h1>
+<div class="jobdetails">
+    
+<h1 class="jobtitle">{{jobInfo.job_title}} -- {{jobInfo.company_name}}</h1>
 
 {{#each jobPicPath}}
     {{#if this}}
@@ -8,7 +10,8 @@
 
 <p>Company Logo</p>
 
-<span>{{jobInfo.job_nature}}</span>
+<div class="jobabout">
+<span>{{jobInfo.job_nature}}</span><br>
 <span>Remote: {{jobInfo.job_remote}}</span>
 <p>Location: {{jobInfo.location}}</p>
 
@@ -19,6 +22,8 @@
 <div>
     <p style="white-space: pre-line;">{{jobInfo.job_description}}</p>
 </div>
+</div>
+
 
 {{#unless isCompany}}
 {{#if jobOpen}}
@@ -27,9 +32,10 @@
 </form>
 {{/if}}
 {{/unless}}
-
 {{#if sameCompany}}
 <form action="/jobs/closejob/{{jobInfo.id}}" method="POST">
    <button type="submit">Close Position</button> 
 </form>
 {{/if}}
+
+</div>

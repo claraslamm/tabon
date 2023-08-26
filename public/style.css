@@ -172,6 +172,7 @@
 
 .action {
   position: fixed;
+  z-index: 9999;
   top: 30px;
   right: 40px;
 }
@@ -261,7 +262,7 @@
 
 .profilepicture {
   margin-top: 8%;
-  margin-left: 5%;
+  /* margin-left: 5%; */
   margin-bottom: 2%;
   position: relative;
   width: 150px;
@@ -303,7 +304,6 @@
   background-color: white;
   font-weight: 600;
   padding: 6px 20px;
-  margin-left: 90px;
   margin-top: 8px;
  }
 
@@ -352,7 +352,7 @@ label {
 }
 
 #profilepic {
-  margin-left: 150px;
+    margin-left: 150px;
 }
 /* Style the file input */
 input[type="file"] {
@@ -435,4 +435,107 @@ button[type="submit"]:hover {
 
 #uploadresume {
   margin-left: 150px;
+}
+
+.companypara {
+  font-size: 16px;
+  line-height: 1;
+}
+
+.companytitle {
+  font-size: 16px;
+  line-height: 1;
+  font-weight: 500;
+}
+.companyabout {
+  margin-top:50px;
+  font-size: 23px;
+}
+
+.openroletitle {
+  font-size: 19px;
+  line-height: 1;
+  font-weight: 500;
+  margin-top: 60px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.openroles {
+  margin: 10px;
+  width: 40%;
+  text-align: center;
+}
+
+.openrolepara {
+  font-size: 16px;
+  line-height: 0.5;
+  margin-top: 20px;
+  font-weight: 400;
+}
+
+
+.openrolebtn {
+  font-size: 13px;
+  line-height: 0.5;
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 30px;
+  border-radius: 15px;
+  border: black 1px solid;
+  background-color: white;
+  font-weight: 600;
+  padding: 6px 20px;
+  padding-top: 12px;
+  padding-bottom: 12px;
+
+}
+
+.openrolebtn:hover {
+  background-color: #333;
+  color: white;
+}
+
+.jobtitle {
+  font-size: 20px;
+  margin-top: 80px;
+}
+
+.jobdetails {
+  text-align: center;
+}
+
+.jobabout {
+  margin-top: 20px;
+  line-height: 2;
+}
+
+#companylogo{
+  margin-left: 30px;
+}
+
+.home {
+  margin: 0 auto;
+  max-width: 85.5%;
+}
+
+.card-title {
+  margin: 0px;
+}
+
+.job-title {
+  font-size: 16px;
+  margin-top: 8px;
+  margin-bottom: 10px;
+}
+
+.jobinfo {
+  height: 100px;
+  overflow: hidden;
+}
+
+.pagecontainer {
+  width: 80%;
+  margin: 0 auto;
 }
