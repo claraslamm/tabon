@@ -1,28 +1,31 @@
+
 <form action="/profile/editcompanyprofile" method="POST" enctype="multipart/form-data">
   <h4>Edit Your Company's Profile</h4>
 
   <label for="companylogo">Upload your profile picture</label>
   <br>
-  <input type="file" id="companylogo" name="companylogo">
-  <br>
+  <div class="filechosen">
+  <input type="file" class="file" id="companylogo" name="companylogo">
+  </div>
+  <br> 
 
-  <label for="companyname">Your company's name</label>
+  <label class="inputlabel" for="companyname">Your company's name</label>
   <input type="text" id="companyname" value="{{companyInfo.company_name}}" name="companyname">
   <br>
 
-  <label for="companydescription">About Us</label>
+  <label class="inputlabel" for="companydescription">About Us</label>
   <textarea id="companydescription" name="companydescription">{{companyInfo.company_description}}</textarea>
   <br>
 
-  <label for="companywebsite">Your company's website</label>
+  <label class="inputlabel" for="companywebsite">Your company's website</label>
   <input type="text" id="companywebsite" name="companywebsite" value="{{companyInfo.company_website}}">
   <br>
 
-  <label for="headcount">Your company's number of employees</label>
-  <input type="number" id="headcount" name="headcount" value="{{companyInfo.headcount}}">
+  <label class="inputlabel" for="headcount">Your company's number of employees</label>
+  <input class="headcountinput" type="number" id="headcount" name="headcount" value="{{companyInfo.headcount}}">
   <br>
 
-  <label for="companyremote">Does your company offer remote work?</label>
+  <label class="inputlabel" for="companyremote">Does your company offer remote work?</label>
   <div id="companyremote">
     <label for="remotetrue">Yes</label>
     <input type="radio" id="remotetrue" name="companyremote" value="yes">
@@ -30,12 +33,12 @@
     <input type="radio" id="remotefalse" name="companyremote" value="no" checked>
   </div>
 
-  <label for="aboutusheader">A short header for something special about your company</label>
+  <label class="inputlabel" for="aboutusheader">A short header for something special about your company</label>
   <input type="text" id="aboutusheader" name="aboutusheader" value="{{companyInfo.about_us_heading}}">
   <br>
-  <label for="aboutusdescription">Share more details with your potential employees!</label>
+  <label class="inputlabel" for="aboutusdescription">Share more details with your potential employees!</label>
   <textarea name="aboutusdescription" id="aboutusdesceription">{{companyInfo.about_us_description}}</textarea>
 
-  <button type="submit">Save</button>
+  <button class="savebtn" type="submit">Save</button>
 </form>
 

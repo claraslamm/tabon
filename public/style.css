@@ -439,3 +439,29 @@ text-align: center;
 .maincard {
   margin-top: 60px;
 }
+
+.inputlabel {
+  font-weight: 500;
+  margin-top: 40px;
+}
+
+.headcountinput {
+  padding-left: 60px;
+  padding-right: 60px;
+}
+
+#companyremote {
+  display: flex;
+  justify-content: center;
+}
+
+.savebtn {
+  display: flex;
+  margin: auto;
+}
+
+.filechosen{
+  display: flex;
+  justify-content: center;
+  margin-left: 90px;
+}
