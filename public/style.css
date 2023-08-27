@@ -465,3 +465,23 @@ text-align: center;
   justify-content: center;
   margin-left: 90px;
 }
+
+.post-title {
+  text-align: center;
+  margin-top: 90px;
+  font-size: 25px;
+}
+.post-writer{
+  text-align: center;
+  font-size: 13px;
+}
+
+.post-summary, .post-description {
+  text-align: center;
+  font-weight: 400;
+  font-size: 18px;
+}
+
+.userpost {
+  text-align: center;
+}
