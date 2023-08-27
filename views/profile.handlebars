@@ -1,4 +1,5 @@
 <div class="profile">
+  <div class="basicprofile">
   {{#each profilePicPath}}
   {{#if this}}
   <img src="{{this}}" alt="Profile Picture" class="profilepicture">
@@ -17,7 +18,8 @@
 <button class="post-btn"><a href="/posts/createpost">Create Post</a></button>
 <br><br>
 {{/if}}
-
+</div>
+  <div class="userproject">
   <h2 class="about">About</h2>
   <p class="description">{{userInfo.about_section}}</p>
 
@@ -37,5 +39,6 @@
   <a href="/profile/resume/{{userInfo.user_id}}">
     <img class="resume-pic"src="/images/cvthumbnail.png" alt="Resume Thumbnail">
   </a>
+</div>
 </div>
 
