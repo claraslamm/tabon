@@ -4,6 +4,7 @@ Tabon is a social media/job board  built for designers.
 We have noticed mostly job websites tends to be involved lots of reading and texts so we wanna build a user-friendly site where people can market their job and project as picture.
 
 Login Page
+
 <img width="872" alt="Screenshot 2023-08-28 at 6 07 02 PM" src="https://github.com/claraslamm/tabon/assets/124157718/84f9e84e-2c5f-4d61-bc85-2be3695402aa">
 
 Create a profile page
@@ -19,6 +20,7 @@ Company Profile Page - Open roles and company description
 <img width="916" alt="Screenshot 2023-08-28 at 6 10 05 PM" src="https://github.com/claraslamm/tabon/assets/124157718/bc057342-3cfb-4aac-b7d3-b25f8ba431aa">
 
 User Profile Page
+
 <img width="559" alt="Screenshot 2023-08-28 at 6 10 58 PM" src="https://github.com/claraslamm/tabon/assets/124157718/f558b409-557a-4efd-9782-5fb239633eaf">
 
 User Profile Page - About and project
