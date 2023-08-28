@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="/jobs.css">
 <div class="jobdetails">
     
 <h1 class="jobtitle">{{jobInfo.job_title}} -- {{jobInfo.company_name}}</h1>
@@ -8,19 +9,27 @@
     {{/if}}
 {{/each}}
 
-<p>Company Logo</p>
+ {{#each logoPath}}
+        {{#if this}}
+          <img src="{{this}}" alt="Company Logo" class="profilepicture">
+        {{else}}
+          <img src="/images/companylogos/company-logo-default.png" class="profilepicture" alt="Profile Picture">
+        {{/if}}
+      {{/each}}
 
 <div class="jobabout">
 <span>{{jobInfo.job_nature}}</span><br>
 <span>Remote: {{jobInfo.job_remote}}</span>
 <p>Location: {{jobInfo.location}}</p>
 
+<div class="jobdescription">
 <div>
     <p style="white-space: pre-line;">{{jobInfo.job_summary}}</p>
 </div>
 
 <div>
     <p style="white-space: pre-line;">{{jobInfo.job_description}}</p>
+</div>
 </div>
 </div>
 

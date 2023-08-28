@@ -100,7 +100,12 @@ router.post('/edituserprofile', async (req, res) => {
     uploadProjectPics(req);
     uploadResume(req);
     
-    await knex('user_profiles').where({ user_id: id }).update({ hasProfilePic: "Yes" });
+    let picturePath = `public/images/profilepics/profilepicture${req.user.id}`
+    let pictureExists = fs.existsSync(picturePath);
+
+    if (pictureExists) {
+            await knex('user_profiles').where({ user_id: id }).update({ hasProfilePic: "Yes" });
+    }
 
     const updateUserProfile = {
         first_name: req.body.firstname,
@@ -130,7 +135,13 @@ router.post('/editcompanyprofile', async (req, res) => {
     const id = req.user.id;
 
     uploadPicture(req, 'companylogo', 'companylogo', 'companylogos');
-    await knex('company_profiles').where({ user_id: req.user.id }).update({ hasProfilePic: "Yes" });
+
+    let picturePath = `public/images/companylogos/companylogo${req.user.id}`
+    let pictureExists = fs.existsSync(picturePath);
+
+    if (pictureExists) {
+            await knex('company_profiles').where({ user_id: id }).update({ hasProfilePic: "Yes" });
+    }
 
     const updateCompanyProfile = {
         company_name: req.body.companyname,
@@ -236,7 +247,7 @@ router.get('/company/:companyname', async (req, res) => {
     const companyJobs = await knex('job_listings')
     .join('company_profiles', 'company_profiles.user_id', '=', 'job_listings.company_id')
     .join('users', 'company_profiles.user_id', '=', 'users.id')
-    .select('job_listings.id as job_id', 'job_listings.job_title', 'job_listings.location', 'job_listings.job_nature','job_listings.job_remote')
+    .select('job_listings.id as job_id', 'job_listings.job_title', 'job_listings.location', 'job_listings.job_nature','job_listings.job_remote', 'job_listings.job_summary')
     .where({ username })
 
     res.render("companyProfile", { companyInfo: companyInfo, companyJobs: companyJobs, logoPath: logoPath, isCompany: isCompany });

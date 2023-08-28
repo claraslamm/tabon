@@ -32,6 +32,10 @@ body {
     margin-bottom: 0.8rem;
 }
 
+.input input, .input select {
+    width: 40ch;
+}
+
 .input-label {
     font-size: 0.7rem;
     color: gray;
@@ -114,7 +118,7 @@ body {
 }
 
 .form-textarea {
-    width: 39ch;
+    width: 40ch;
     height: 10rem;
 }
 

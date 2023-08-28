@@ -1,5 +1,6 @@
-<h1>{{postInfo.post_title}}</h1>
-<span>Written by: {{postInfo.first_name}} {{postInfo.last_name}}</span>
+<div class="userpost">
+<h1 class="post-title">{{postInfo.post_title}}</h1>
+<span class="post-writer">Written by: {{postInfo.first_name}} {{postInfo.last_name}}</span>
 
 <br>
 
@@ -9,5 +10,6 @@
     {{/if}}
 {{/each}}
 
-<h4 style="white-space: pre-line;">{{postInfo.post_summary}}</h4>
-<p style="white-space: pre-line;">{{postInfo.post_description}}</p>
+<h4 class="post-summary" style="white-space: pre-line;">{{postInfo.post_summary}}</h4>
+<p class="post-description" style="white-space: pre-line;">{{postInfo.post_description}}</p>
+</div>

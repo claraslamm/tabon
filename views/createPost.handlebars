@@ -1,25 +1,29 @@
-<h3>Post something here:</h3>
+<link rel="stylesheet" href="/jobs.css">
 
-<form action="/posts/createpost" method="POST" enctype="multipart/form-data">
-    <label for="posttitle">Post Title:</label>
-    <br>
-    <input type="text" name="posttitle" id="posttitle" required>
-    <br>
+<div class="create">
+    <p class="post-text">Create a post here</p>
 
-    <label for="postsummary">Give your post a short summary:</label>
-    <br>
-    <textarea id="postsummary" name="postsummary" required></textarea>
-    <br>
+    <form action="/posts/createpost" method="POST" enctype="multipart/form-data">
+        <div class="post-question">
+            <div><label for="posttitle" class="post-form-label">Post Title<span class="asterisk">*</span></label></div>
+            <input type="text" name="posttitle" id="posttitle" required>
+        </div>
 
-    <label for="postdescription">Write your full post here:</label>
-    <br>
-    <textarea id="postdescription" name="postdescription" required></textarea>
-    <br>
+        <div class="post-question">
+            <div><label for="postsummary" class="post-form-label">Give your post a short summary<span class="asterisk">*</span></label></div>
+            <textarea id="postsummary" name="postsummary" required></textarea>
+        </div>
 
-    <label for="postpic">Upload a picture to accompany your post</label>
-    <br>
-    <input type="file" name="postpic" accept="image/png, image/jpeg">
-    <br>
-    
-    <button type="submit">Post!</button>
-</form>
+        <div class="post-question">
+            <div><label for="postdescription" class="post-form-label">Write your full post here<span class="asterisk">*</span></label></div>
+            <textarea id="postdescription" name="postdescription" required></textarea>
+        </div>
+
+        <div class="post-question">
+            <div><label for="postpic" class="post-form-label">Upload a picture to accompany your post<span class="asterisk">*</span></label></div>
+            <input type="file" name="postpic" accept="image/png, image/jpeg" required>
+        </div>
+        
+        <button type="submit" class="submit">Post</button>
+    </form>
+</div>
