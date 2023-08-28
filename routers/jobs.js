@@ -12,6 +12,7 @@ router.get("/", async (req, res) => {
 
     let jobInfo = await knex("company_profiles")
         .join("job_listings", "company_profiles.user_id", "=", "job_listings.company_id")
+        .join('users', 'users.id', '=', 'company_profiles.user_id')
         .orderBy("job_updated_date", "desc");
 
     jobInfo = formatDate(jobInfo, "job_updated_date");
@@ -133,7 +134,7 @@ router.get("/listedjobs", isLoggedIn, async (req, res) => {
             .where({ "job_listings.company_id": id, user_profile_id: null })
             .select("job_listings.id", "job_listings.job_title", "job_listings.company_id", "company_profiles.company_name", "job_listings.location", "company_profiles.hasProfilePic");
         
-        res.render("listedjobs", { jobs, noApplicants });
+        res.render("listedJobs", { jobs, noApplicants });
     } else {
         res.redirect("/jobs");
     }
