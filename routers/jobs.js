@@ -12,7 +12,6 @@ router.get("/", async (req, res) => {
 
     let jobInfo = await knex("company_profiles")
         .join("job_listings", "company_profiles.user_id", "=", "job_listings.company_id")
-        .join('users', 'users.id', '=', 'company_profiles.user_id')
         .orderBy("job_updated_date", "desc");
 
     jobInfo = formatDate(jobInfo, "job_updated_date");
