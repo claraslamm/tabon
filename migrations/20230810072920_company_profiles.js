@@ -7,11 +7,11 @@ exports.up = function(knex) {
         table.increments();
         table.string('company_name').notNullable().unique();
         table.string('company_website');
-        table.string('company_description');
+        table.text('company_description');
         table.string('headcount');
         table.string('company_remote');
         table.string('about_us_heading');
-        table.string('about_us_description');
+        table.text('about_us_description');
         table.integer('user_id').notNullable().unique();
         table.foreign('user_id').references('users.id');
         table.string('hasProfilePic');

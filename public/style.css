@@ -222,9 +222,6 @@ button[type="submit"]:hover {
 .companyinfo {
   width: 70%;
 }
-.aboutcompany {
-  margin-left: 16.5%;
-}
 
 .companybuttons {
   border: 1px solid black;
@@ -234,32 +231,51 @@ button[type="submit"]:hover {
 }
 
 .companyjobs {
-  margin-left: 5%;
   display: flex;
   flex-wrap: wrap;
-  /* border: 1px solid red; */
   width: 100%;
+  justify-content: center;
 }
 
 .individualjob {
   width: 30%;
-  margin-right: 16%
+  margin: 30px 5% 0;
 }
 
 .companypara {
-  font-size: 16px;
-  line-height: 1;
   margin-top: 30px;
+  width: 75%;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 14px;
+  font-weight: 500;
+  word-spacing: 1px;
 }
 
+.companywebsite {
+  font-size: 16px;
+  line-height: 1;
+  margin-top: 10px;
+  width: 75%;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
 .companytitle {
   font-size: 16px;
   line-height: 1;
   font-weight: 500;
+  margin-top: 10px;
 }
 .companyabout {
   margin-top:50px;
   font-size: 23px;
+}
+
+.aboutcompany {
+  width: 75%;
+  margin: 0 auto;
 }
 
 /* .openroletitle {
@@ -326,10 +342,6 @@ button[type="submit"]:hover {
   line-height: 2;
 }
 
-.companydescription {
-  margin-left: 5%;
-}
-
 #companylogo{
   margin-left: 30px;
 }
@@ -337,6 +349,7 @@ button[type="submit"]:hover {
 .home {
   margin: 0 auto;
   max-width: 85.5%;
+  margin-left: 10%;
 }
 
 .card-title {
@@ -361,7 +374,9 @@ button[type="submit"]:hover {
 
 
 .basicprofile {
-text-align: center;
+  text-align: center;
+  width: 75%;
+  margin: 0 auto;
 }
 
 .profilepicture {
@@ -450,6 +465,11 @@ text-align: center;
   padding-right: 60px;
 }
 
+.remotecompany {
+  width: 18%;
+  margin: 0 auto;
+}
+
 #companyremote {
   display: flex;
   justify-content: center;
@@ -480,8 +500,19 @@ text-align: center;
   text-align: center;
   font-weight: 400;
   font-size: 18px;
+  width: 75%;
+  margin: 30px auto;
 }
 
 .userpost {
   text-align: center;
+}
+
+.homelink {
+  text-decoration: none;
+  color: black;
+}
+
+.postpic {
+  max-width: 500px;
 }

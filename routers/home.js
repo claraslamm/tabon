@@ -12,17 +12,20 @@ router.get('/', async (req, res) => {
 
     const jobListings = await knex('job_listings')
         .join('company_profiles', 'company_profiles.user_id', '=', 'job_listings.company_id')
+        .join('users', 'users.id', '=', 'company_profiles.user_id')
         .select(
             'job_listings.id as job_id',
             'company_profiles.user_id',
             'company_profiles.company_name as name',
             'job_listings.job_title',
             'job_listings.job_summary',
-            'job_listings.job_updated_date as post_time'
+            'job_listings.job_updated_date as post_time',
+            'users.username'
         );
     
     const userPosts = await knex('user_posts')
         .join('user_profiles', 'user_profiles.user_id', '=', 'user_posts.post_user_id')
+        .join('users', 'users.id', '=', 'user_profiles.user_id')
         .select(
             'user_posts.id as post_id',
             'user_profiles.user_id',
@@ -30,7 +33,8 @@ router.get('/', async (req, res) => {
             'user_profiles.last_name',
             'user_posts.post_title as job_title',
             'user_posts.post_summary as job_summary',
-            'user_posts.post_time as post_time'
+            'user_posts.post_time as post_time',
+            'users.username'
         );
 
     const combinedPosts = [...jobListings, ...userPosts];

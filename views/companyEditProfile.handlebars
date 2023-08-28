@@ -25,13 +25,13 @@
   <input class="headcountinput" type="number" id="headcount" name="headcount" value="{{companyInfo.headcount}}">
   <br>
 
-  <label class="inputlabel" for="companyremote">Does your company offer remote work?</label>
-  <div id="companyremote">
-    <label for="remotetrue">Yes</label>
-    <input type="radio" id="remotetrue" name="companyremote" value="yes">
-      <label for="remotefalse">No</label>
-    <input type="radio" id="remotefalse" name="companyremote" value="no" checked>
-  </div>
+  <label for="companyremote" class="inputlabel">Workplace Type</label>
+  <select id="companyremote" name="companyremote" class="remotecompany" required>
+      <option disabled selected value> Select an Option </option>
+      <option value = "On-site">On-site</option>
+      <option value = "Remote">Remote</option>
+      <option value = "Hybrid">Hybrid</option>
+  </select>
 
   <label class="inputlabel" for="aboutusheader">A short header for something special about your company</label>
   <input type="text" id="aboutusheader" name="aboutusheader" value="{{companyInfo.about_us_heading}}">
