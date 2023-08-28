@@ -134,7 +134,9 @@ router.post('/editcompanyprofile', async (req, res) => {
 
     uploadPicture(req, 'companylogo', 'companylogo', 'companylogos');
 
-    if (req.files.companylogo) {
+    let companylogo = req.files ? req.files.companylogo : null;
+    //checking if company has a logo - if not, use default picture
+    if (companylogo) {
         await knex('company_profiles').where({ user_id: id }).update({ hasProfilePic: "Yes" });
     }
 

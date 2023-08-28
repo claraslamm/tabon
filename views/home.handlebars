@@ -6,7 +6,7 @@
             <div class="card m-2" style="width: 18rem;">
                 <img src="/images/jobpics/jobpicture{{this.user_id}}{{this.job_id}}" class="card-img-top" alt="Job picture">
                 <div class="card-body">
-                    <h6 class="card-title">{{this.name}}</h6>
+                    <h6 class="card-title"><a href="/profile/company/{{this.username}}" class="homelink">{{this.name}}</a></h6>
                     <h4 class="card-title job-title"> {{this.job_title}}</h4>
                     <p class="card-text jobinfo">{{this.job_summary}}</p>
                     <a href="/jobs/jobdetails/{{this.job_id}}" class="btn btn-primary">Apply</a>
@@ -18,7 +18,7 @@
             <div class="card m-2" style="width: 18rem;">
                 <img src="/images/postpics/postpicture{{this.user_id}}{{this.post_id}}" class="card-img-top" alt="Post picture">
                 <div class="card-body">
-                    <h6 class="card-title">{{this.name}} {{this.last_name}}</h6>
+                    <h6 class="card-title"><a href="/profile/user/{{this.username}}" class="homelink">{{this.name}} {{this.last_name}}</a></h6>
                     <h4 class="card-title job-title"> {{this.job_title}}</h4>
                     <p class="card-text jobinfo">{{this.job_summary}}</p>
                     <a href="/posts/postdetails/{{this.post_id}}" class="btn btn-primary">Find Out More</a>

@@ -1,11 +1,6 @@
 <link rel="stylesheet" href="/jobs.css">
 
 <div class="job-pages">
-    {{#each applicants}}
-        {{#if @first}}
-            <span class="job-title">{{job_title}}</span>
-        {{/if}}
-    {{/each}}
 
     <div class="company-jobs-buttons">
         <div class="jobs-buttons">
@@ -21,6 +16,9 @@
         </div>
     </div>
 
+    {{#unless applicants}}
+    <p>Sorry, there are no applicants yet...</p>
+    {{/unless}}
     {{#each applicants}}
 
         <div class="jobcontainer">

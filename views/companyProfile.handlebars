@@ -1,4 +1,4 @@
-<div class="pagecontainer">
+{{!-- <div class="pagecontainer">
   <div class="companyrow">
     <div class="companyinfo">
       {{#each logoPath}}
@@ -46,5 +46,46 @@
       <p>{{companyInfo.about_us_description}}</p>
     </div>
   </div>
-</div>
+</div> --}}
+  <div class="basicprofile">
+      {{#each logoPath}}
+        {{#if this}}
+          <img src="{{this}}" alt="Company Logo" class="profilepicture">
+        {{else}}
+          <img src="/images/companylogos/company-logo-default.png" class="profilepicture" alt="Profile Picture">
+        {{/if}}
+      {{/each}}
+      <p class="companytitle">{{companyInfo.company_name}}</p>
+      <p class="companywebsite">{{companyInfo.company_website}}</p>
+      <div>
+        <span class="companybuttons">{{companyInfo.headcount}} members</span>
+        <span class="companybuttons">{{companyInfo.company_remote}}</span>
+      </div>
+      {{#if isCompany}}
+        <button class="edit-btn"><a href="/profile/editcompanyprofile">Edit Profile</a></button>
+      {{/if}}
 
+    <div class="aboutcompany">
+      <h2 class="companyabout">About</h2>
+      <p class="companypara">{{companyInfo.company_description}}</p>
+    </div>
+
+    {{#if companyJobs}}
+    <div><h2 class="companyabout">Open roles</h2></div>
+    {{/if}}
+    
+    <div class="companyjobs">
+      {{#each companyJobs}}
+      <div class="individualjob">
+        <p class="openroletitle">{{this.job_title}}</p>
+        <p class="openrolepara">{{this.job_summary}}</p>
+        <a href="/jobs/jobdetails/{{this.job_id}}"><button class="openrolebtn">View Role</button></a>
+      </div>
+      {{/each}}
+    </div>
+
+    <div><h2 class="companyabout">{{companyInfo.about_us_heading}}</h2></div>
+    <div class="companydescription">
+      <p class="companypara">{{companyInfo.about_us_description}}</p>
+    </div>
+</div>

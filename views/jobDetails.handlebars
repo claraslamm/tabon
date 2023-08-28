@@ -5,7 +5,7 @@
 
 {{#each jobPicPath}}
     {{#if this}}
-        <img src="{{this}}" alt="Picture describing the job">
+        <img class="postpic" src="{{this}}" alt="Picture describing the job">
     {{/if}}
 {{/each}}
 
@@ -19,8 +19,8 @@
 
 <div class="jobabout">
 <span>{{jobInfo.job_nature}}</span><br>
-<span>Remote: {{jobInfo.job_remote}}</span>
-<p>Location: {{jobInfo.location}}</p>
+<span>{{jobInfo.job_remote}}</span>
+<p>{{jobInfo.location}}</p>
 
 <div class="jobdescription">
 <div>
