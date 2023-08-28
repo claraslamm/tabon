@@ -25,3 +25,7 @@ User Profile Page
 
 User Profile Page - About and project
 <img width="799" alt="Screenshot 2023-08-28 at 6 11 18 PM" src="https://github.com/claraslamm/tabon/assets/124157718/d544263d-c834-473f-8585-2e930385fa45">
+
+Job Board
+<img width="1210" alt="Screenshot 2023-08-28 at 6 29 49 PM" src="https://github.com/claraslamm/tabon/assets/124157718/ee69d695-ceb2-44e1-b90e-aa3bdda38880">
+
