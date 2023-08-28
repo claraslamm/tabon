@@ -99,12 +99,9 @@ router.post('/edituserprofile', async (req, res) => {
     uploadPicture(req, 'profilepic', 'profilepicture', 'profilepics');
     uploadProjectPics(req);
     uploadResume(req);
-    
-    let picturePath = `public/images/profilepics/profilepicture${req.user.id}`
-    let pictureExists = fs.existsSync(picturePath);
 
-    if (pictureExists) {
-            await knex('user_profiles').where({ user_id: id }).update({ hasProfilePic: "Yes" });
+    if (req.files.profilepic) {
+        await knex('user_profiles').where({ user_id: id }).update({ hasProfilePic: "Yes" });
     }
 
     const updateUserProfile = {
@@ -121,6 +118,7 @@ router.post('/edituserprofile', async (req, res) => {
 
     await knex('user_profiles').where({ user_id: id }).update(updateUserProfile);
     await knex('user_projects').where({ user_profile_id: id }).update(updateProjectInfo);
+
     res.redirect(`/profile/user/${req.user.username}`);
 })
 
@@ -136,11 +134,8 @@ router.post('/editcompanyprofile', async (req, res) => {
 
     uploadPicture(req, 'companylogo', 'companylogo', 'companylogos');
 
-    let picturePath = `public/images/companylogos/companylogo${req.user.id}`
-    let pictureExists = fs.existsSync(picturePath);
-
-    if (pictureExists) {
-            await knex('company_profiles').where({ user_id: id }).update({ hasProfilePic: "Yes" });
+    if (req.files.companylogo) {
+        await knex('company_profiles').where({ user_id: id }).update({ hasProfilePic: "Yes" });
     }
 
     const updateCompanyProfile = {
