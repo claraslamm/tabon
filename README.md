@@ -29,3 +29,11 @@ User Profile Page - About and project
 Job Board
 <img width="1210" alt="Screenshot 2023-08-28 at 6 29 49 PM" src="https://github.com/claraslamm/tabon/assets/124157718/ee69d695-ceb2-44e1-b90e-aa3bdda38880">
 
+Job Details
+<img width="839" alt="Screenshot 2023-08-28 at 6 31 34 PM" src="https://github.com/claraslamm/tabon/assets/124157718/db7ac1b0-798a-483c-ad77-af9399912d54">
+
+Applied Job Page
+<img width="1234" alt="Screenshot 2023-08-28 at 6 32 23 PM" src="https://github.com/claraslamm/tabon/assets/124157718/10130b35-9940-49e4-922d-b9117bd82235">
+
+Applicants review page
+<img width="1229" alt="Screenshot 2023-08-28 at 6 33 00 PM" src="https://github.com/claraslamm/tabon/assets/124157718/5ff81587-e29b-41b9-b676-57acf99184be">
